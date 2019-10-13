@@ -1,0 +1,99 @@
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>About</title>
+
+	<script async="" src="./rwoodleymedia.org_files/analytics.js"></script>
+	<script>
+		(function (i, s, o, g, r, a, m) {
+			i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+				(i[r].q = i[r].q || []).push(arguments)
+			}, i[r].l = 1 * new Date(); a = s.createElement(o),
+				m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+		})(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+		ga('create', 'UA-41066114-3', 'auto');
+		ga('send', 'pageview');
+
+	</script>
+	<style>
+		li {
+			padding-bottom: .5em; 
+		}
+	</style>
+	<link rel="stylesheet" type="text/css" href="../css/styles.css">
+
+</head>
+
+<body>
+	<!-- Banner.-->
+	<div id="header">
+				<div style="float: left;">
+					<h1 class="sitename"><a href="../blog.html">Face Recognition Design Considerations</a></h1>
+				</div>
+
+				<div id="nav">
+						2013/04/28
+				</div>
+
+	</div>
+	<!-- End of Banner.-->
+
+
+	<div class="container">
+		<div class="row">
+
+			<div class="entry">
+
+<p>Building a face recognition algorithm involves a whole string of design decisions, each of which will impact how well
+	the system can identify faces.</p>
+<p>Here is a partial list of these decisions (*):</p>
+<p>– Choice of faces used to train the detection algo. Note that both a positive and negative set is needed. In other
+	words you need to show it faces it should recognize, and faces (or other images) it should reject.<br>
+	– Image preprocessing decisions (size, greyscale, normalization).<br>
+	– Face alignment corrections.<br>
+	– Number of eigen vectors to use. In other words, the number of dimensions of your face space.<br>
+	– Number of low order eigen vectors to exclude. The idea being that low order vectors encode irrelevant (for face
+	recognition) information like lighting.<br>
+	– Similarity measures. Aka nearest neighbor measures. (Euclidean vs Mahalanobis etc)<br>
+	– Choice of PCA methodology (Eigenfaces vs Fisherfaces).</p>
+<p>After laboriously doing numerous comparisons across multiple training sets on my own, I discovered this paper
+	published in 2001 where some researchers investigated these issues in a very systematic fashion.<br>
+	Computational and Performance Aspects of PCA-based Face Recognition Algorithms, by H. Moon and P. J. Phillips,
+	Perception, 2001, Vol 30, pg 303-321 and (NISTIR 6486)<br>
+	<a
+		href="http://www.nist.gov/customcf/get_pdf.cfm?pub_id=151458">http://www.nist.gov/customcf/get_pdf.cfm?pub_id=151458</a>
+</p>
+<p>I was reassured to see that their conclusions were close to my own (which I’ll write up later). It is worth reading
+	the entire paper, but some of main conclusions I took away are:</p>
+<p>– Image Normalization helps, but the particular implementation is not critical.<br>
+	– Performance increases until approximately 200 eigenvectors, then decreases slightly. However much of the
+	performance gain can be captured with 100 eigenvectors.<br>
+	– Removing the first low-order eigen vectors is best, removing the 2nd helps slightly.<br>
+	– The similarity measure has a huge effect. Using an enhanced Mahalanobis classifier gives the best result.</p>
+<p>(*) note that I’m following the framework implemented in the OpenCV software, namely using Haar classifiers for
+	detection and some form of PCA for recognition.</p>
+
+                <p>
+                    <span style="float:right;">
+                        <a href="02-ConstrainFaceDetectionforBetterFaceRecognition.html">Constrain Face Detection for Better Face Recognition <img src="../media/nextpost.png" alt="Next Post"></a>
+                    </span>
+                </p>
+                <p><a href="../blog.html">Back to Home</a></p>
+
+</div>
+
+<!-- Footer.-->
+<div id="footer">
+<div style="float: right; margin-right: 1em; ">
+    <span style="display:block;height:30px;">Copyright (c) <nobr><a href="http://rwoodley.org/"
+                style="color:#aaa;" target="_blank">Robert Woodley</a> 2014-2025</nobr></span>
+</div>
+</div>
+</div>
+</div>
+<!-- End of Footer.-->
+</body>
+
+</html>

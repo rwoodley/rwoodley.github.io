@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tessellation of the Hyperbolic Plane on the Riemann Sphere</title>
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+</head>
+<body>
+    <div id="header">
+        <div style="float: left;">
+            <h1 class="sitename"><a href="../blog.html">Tessellation of the Hyperbolic Plane on the Riemann Sphere</a></h1>
+        </div>
+
+        <div id="nav">
+            2017/03/05
+        </div>
+
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="entry">
+
+    <div class="post-content">
+
+        <p>I’m interested in learning more about the modular group and this article looking into hyperbolic tessellations represents my initial efforts to collect my thoughts on the topic.</p>
+        <p>We are familiar with hyperbolic tessellations from the artwork of M.C. Escher and from numerous renderings of the <a href="https://en.wikipedia.org/wiki/Poincar%C3%A9_disk_model">Poincare Disk</a> (which was really invented by <a href="https://en.wikipedia.org/wiki/Eugenio_Beltrami">Beltrami</a>, not <a href="https://en.wikipedia.org/wiki/Henri_Poincar%C3%A9">Poincaré</a>):</p>
+        <p><img src="17-Tesselations_files/disc2_3.jpg" alt="Poincare Disk"></p>
+        <p>The disk model is not the only model of hyperbolic space. There is also the Klein model, the hyperboloid model, and the upper half plane model, and probably some others. Let’s consider the upper half plane model. One way to look at the Poincaré half plane model is as a view on that part of complex plane where the imaginary part is positive. So we’re only considering half of the complex plane, the upper half. Here is what a tiling of the upper half plane looks like:</p>
+        <p><img src="17-Tesselations_files/ModularGroup-FundamentalDomain-01.png" alt="Tiling of the upper half plane"></p>
+        <p><em>By Fropuff (from en wikipedia) [GFDL (http://www.gnu.org/copyleft/fdl.html) or CC-BY-SA-3.0 (http://creativecommons.org/licenses/by-sa/3.0/)], via Wikimedia Commons</em></p>
+        <p>To quote wikipedia: “The <a href="https://en.wikipedia.org/wiki/Projective_linear_group">projective linear group</a> PGL(2,C) acts on the Riemann sphere by the <a href="https://en.wikipedia.org/wiki/M%C3%B6bius_transformation">Möbius transformations</a>. The subgroup that maps the upper half-plane, H, onto itself is PSL(2,R)”. So Möbius transformations with real coefficients preserve the upper half-plane. That means that any such transformation will keep all points that are already on the upper half-plane on the upper half plane. (And incidentally, the real numbers are mapped to themselves).</p>
+        <p>If we look at the upper half plane model this way (as the upper half of the complex plane), then when we render it on the <a href="https://en.wikipedia.org/wiki/Riemann_sphere">Riemann Sphere</a>, it looks like this:</p>
+        <p><img src="17-Tesselations_files/pic15.gif" alt="Upper half plane on Riemann Sphere"></p>
+        <p>In this depiction, the tiled portion is the upper half plane. The red hemisphere is not the upper half plane, it is the lower half plane. The green axis points to (∞, ∞i), the blue axis intercepts the sphere at (-1,0i) and the red axis intercepts the sphere at (0,-i).</p>
+        <p>The tessellation depicted above is of the modular group, PSL(2,Z), where Z indicates the set of integers. So in other words the modular group Γ is those mobius transformations with integer coefficients and unit determinant. It is a subgroup of PSL(2,R) (but not a normal subgroup).</p>
+        <p>To <a href="https://en.wikipedia.org/wiki/Modular_group">quote wikipedia again</a>:</p>
+        <p>“The modular group can be shown to be <a href="https://en.wikipedia.org/wiki/Generating_set_of_a_group">generated</a> by the two transformations</p>
+        <p>S: z -> -1/z<br>T: z -> z + 1</p>
+        <p>so that every element in the modular group can be represented (in a non-unique way) by the composition of powers of S and T. Geometrically, S represents inversion in the unit circle followed by reflection with respect to the imaginary axis, while T represents a unit translation to the right.” z is a complex number of course. And as mentioned above, S and T are Möbius transforms with integer coefficients and determinant = 1.</p>
+        <p>So we can use those 2 transformations and apply them over and over. What region should we start with as our initial tile (or to use the technical terminology: what fundamental domain should we choose?). A common choice is depicted in the grey region in the upper half plane figure above. It is that region where |z| is > 1 and |Re(z)| < 1/2. The orange triangle in the spherical tiling above is the very same region.</p>
+        <p>You can view my Three.js version of this tessellation <a href="http://rwoodleymedia.org/Geometry/hyperbolicTessellationExample/transform.html?mode=hyperbolicTessellation">here</a> where you can spin and zoom it as you please.</p>
+        <p>Note that we are drawing this diagram using WebGL shaders. Pixel shaders (aka fragment shaders) are called once for each pixel. In our case a pixel maps to a complex coordinate. So our code is called repeatedly and handed a different complex coordinate on each call. The pixel shader has to decide what color to use for this given pixel/complex coordinate. So it has to do the Möbius transforms in reverse. (I discuss this issue in greater detail here). This shows how the tesselation works [3]:</p>
+        <p><img src="17-Tesselations_files/Screen-Shot-2017-03-18-at-11.03.18-AM.png" alt="Tessellation logic"></p>
+        <p>Thus, in code, the logic is:</p>
+        <p>if |z| < 1 then apply S-1<br>else if Re(z) < -.5 apply T, else T-1</p>
+        <p>(remember we’re doing everything backwards because we’re working with pixel shaders).</p>
+        <p>By a suitable placement of the camera you can get a view that looks just like the Poincaré disk:</p>
+        <p><img src="17-Tesselations_files/disc.png" alt="Poincare disk view"></p>
+        <p>This provides an intuition for believing that there is a simple mapping from the upper half plane model to the disk model, and indeed there is, it is called the <a href="https://en.wikipedia.org/wiki/Cayley_transform">Cayley transform</a>.</p>
+
+        <h2>Rational Numbers, Q</h2>
+        <p>In case it wasn’t clear, the rim of the upper half plane is the <a href="https://en.wikipedia.org/wiki/Real_projective_line">projective real line</a> (the real line plus a point at infinity). The upper half plane h = { x + iy : y > 0}. The triangles in the tesselation are called ideal triangles since they are each bounded by three sides and have two endpoints in h but one “endpoint” not in h: the third endpoint is either a rational number on the x-axis or is ∞.</p>
+        <p>“Note that any member of the modular group maps the projectively extended real line one-to-one to itself, and furthermore bijectively maps the projectively extended rational line (the rationals with infinity) to itself, the irrationals to the irrationals, the transcendental numbers to the transcendental numbers, the non-real numbers to the non-real numbers, the upper half-plane to the upper half-plane, et cetera.”[6]</p>
+        <p>In the same article it mentions that the modular group never takes an irreducible fraction to a reducible one, which explains its relevance to Farey graphs and Ford circles which I explain in my next post.</p>
+        <p>Thus given our choice of fundamental domain, the points where the tessellations of the fundamental domain hit the boundary are those points s ∈ R ∪ {∞} that are fixed by a parabolic element of Γ. The points are precisely Q ∪ {∞}, where Q stands for the set of rational numbers. The parabolic element is the transform T above. You can tell it is parabolic because the Trace of the 2×2 matrix corresponding to the Möbius transform for T is 2.</p>
+        <blockquote>For z ∈ SL2(R), z is parabolic if z can be conjugated to T . Any parabolic element z generates an infinite discrete subgroup of SL2(R) consisting solely of parabolic elements; and z fixes no points of H and a unique point of P1(R). The parabolic points for SL2(Z) are P1(Q). [4]</blockquote>
+        <p>The fundamental domain in orange above has one point on the real axis. Each transformation in the tessellation moves that point around the rim and generates a new rational number.</p>
+
+        <h2>Hyperbolic Tesselations</h2>
+        <p>So what does this have to do with hyperbolic tesselations? We’ve explained how a special set of Möbius transformations, those that generate the modular group, can tile the upper half plane. The upper half plane is a model of hyperbolic geometry. This was the famous insight that came to Poincaré in a flash:</p>
+        <blockquote>“At that moment which I put my foot on the step the idea came to me, without anything in my former thoughts seeming to have paved the way for it, that the transformations I had used to define the Fuscian functions were identical with those of non-Euclidean geometry” L’Invention Mathématique, Henri Poincaré</blockquote>
+        <p>Or <a href="https://en.wikipedia.org/wiki/Apollonian_gasket#Links_with_hyperbolic_geometry">as wikipedia says</a>: “Möbius transformations are also isometries of the <a href="https://en.wikipedia.org/wiki/Hyperbolic_geometry">hyperbolic plane</a>“. This seems a strange statement. Möbius transformations are conformal on the complex plane: they preserve angles, but the don’t preserve lengths. Isometry means ‘length preserving’. This is possible because in hyperbolic space, in marked contrast to Euclidean space, equal angles guarantee that corresponding side lengths are equal in the hyperbolic metric.[1] A hyperbolic triangle’s size is determined by its angles.</p>
+
+        <h2>Algebraic vs Geometric</h2>
+        <p>The matrices [0,1,-1,0] and [1,1,1,0] generate SL(2Z). Both matrices have determinant = 1. That means they are volume and orientation preserving.</p>
+        <p>The analogous Möbius transforms:</p>
+        <p>S: z -> -1/z<br>T: z -> z + 1<br>generate the modular group. They are not volume preserving in the upper half plane but they are in the hyperbolic plane: all tiles are the same size in the hyperbolic plane.</p>
+        <p>And finally….</p>
+        <p>As a final note, since we’re working with the Riemann sphere we can do all sorts of fun mappings from 360 video footage, as I detailed elsewhere. So piping video through the tessellation gives you:</p>
+        <p><iframe src="https://player.vimeo.com/video/202599501" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></p>
+        <p><a href="https://vimeo.com/202599501">Video 5</a> from <a href="https://vimeo.com/user25899196">Robert Woodley</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
+
+        <p>—————-</p>
+        <p>[1] http://www.mathematica-journal.com/issue/v9i3/contents/ModularGroup/ModularGroup.pdf</p>
+        <p>[2] https://math.dartmouth.edu/~m125x15/quat-book-chap29-072315.pdf</p>
+        <p>[3] http://www.math.uconn.edu/~kconrad/blurbs/grouptheory/SL(2,Z).pdf</p>
+        <p>[4] https://homepages.warwick.ac.uk/~masiao/modforms/examples2.pdf</p>
+        <p>[5] http://www.math.cornell.edu/~hatcher/TN/TNch1.pdf</p>
+        <p>[6] https://en.wikipedia.org/wiki/Modular_group</p>
+    </div>
+
+                <p>
+                    <a href="16-PrivateCribSheet.html"><img src="13-ComplexSurfaces_files/previouspost.png" > Crib Sheet...</a>
+                    <span style="float:right;">
+                        <a href="18-FordCircles.html">Ford Circles<img src="13-ComplexSurfaces_files/nextpost.png" alt="Next Post"></a>
+                    </span>
+                </p>
+						
+
+
+                </p>
+                <p><a href="../blog.html">Back to Home</a></p>
+
+        <div id="footer">
+        <div style="float: right; margin-right: 1em; ">
+            <span style="display:block;height:30px;">Copyright (c) <nobr><a href="http://rwoodley.org/" style="color:#aaa;" target="_blank">Robert Woodley</a> 2014-2025</nobr></span>
+        </div>
+    </div>
+    </div>
+    </div>
+    </div>
+</body>
+</html>

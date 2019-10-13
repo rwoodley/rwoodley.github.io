@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3-Sphere notes</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <div id="header">
+        <div style="float: left;">
+            <h1 class="sitename"><a href="../blog.html">3-Sphere notes</a></h1>
+        </div>
+        <div id="nav">
+            2017/10/21
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="entry">
+                <div class="post-content">
+                    <main>
+                        <h3>Rotations</h3>
+
+                        <p>A rotation in 2 dimensions leaves one single point stationary. A rotation in 3
+dimensions leaves an axis stationary. A rotation in 4 dimensions leaves a plane
+stationary. So in 4d everything rotates around a plane. Now we can additionally
+choose to rotate that stationary plane, thereby doing 2 planar rotations at once.
+I believe this is what is referred to as an isoclinic or Clifford rotation,
+whereby you have a pair of rotating orthogonal 2 planes that intersect only at one
+point. [3]</p>
+
+                        <h3>Hopf Circles, Hopf Fibrations, Hopf Links</h3>
+
+                        <p>The intersection of a complex line in C² containing the origin, with S³ is a
+circle. This is true for every line passing through the origin whose equation is
+of the form z₂=a*z₁ where a is a complex number and z₂ and z₁ are the coordinates of C². By 'line' we mean one-dimensional subspace which we
+can think of as a plane. Thus there is a circle in S³ for each complex number a (including the case where a is infinite). The sphere S³ is therefore filled with circles, one for each
+point of S², that is, for each complex number a. (The as fill all of C¹ which we can identify with the Riemann Sphere). As Thurston
+says "exactly one Hopf circle passes through each point of S³" and "the
+three-sphere is a two-sphere's worth of circles".[4]</p>
+
+                        <p>(Note: A complex line in C² is a one dimensional subspace thereof. We can
+visualize a complex line in C² by imagining a plane in R⁴, but not all planes in R⁴
+are one dimensional subspaces of C². [1])</p>
+
+                        <p>The Hopf fibration is this map from the unit 3-sphere to the unit 2-sphere.
+(This is different than stereographic project to R³!).</p>
+
+                        <ol>
+                            <li>The inverse image of each point on the 2-sphere is a circle. Thus, these images
+decompose the 3-sphere into a continuous family of circles, and each two
+distinct circles form a Hopf link. The linking is what makes the fibration a
+non-trivial fibration.[9]</li>
+                            <li>The inverse image of a circle of latitude on S² under the fiber map is a torus, and these project to nested toruses in R³ which
+fill space. The individual fibers link to Villarceau circles on these tori with
+the exception of the circle through the projection point and the one through
+its <a href="https://en.wikipedia.org/wiki/Antipodal_point">opposite point</a>: the former maps to a straight line, the latter to a unit circle perpendicular
+to, and centered on, this line, which may be viewed as a degenerate torus whose
+radius has shrunken to zero. Every other fiber image encircles the line as well,
+and so, by symmetry, each circle is linked through every circle, both in R³ and in S³. Two such linking circles form a <a href="https://en.wikipedia.org/wiki/Hopf_link">Hopf link</a> in R³ [10]</li>
+                        </ol>
+
+                        <p>The n-dimensional complex project space CPⁿ is the set of all complex lines on
+Cⁿ⁺¹ passing through the origin. [2] Thus C² projects to CP¹, the Riemann sphere. Homogenous coordinates
+represent the same point in the projective space. As we saw above a=z₂/z₁, and each value of a specifies a different set of homogeneous coordinates, therefore a line through
+the origin of C² maps to a point in CP¹. CP¹ is the set of all complex
+one-dimensional subspaces of C². A fancier way to say it, as Wikipedia does is: "CP¹ is the <a href="https://en.wikipedia.org/wiki/Quotient_space_(topology)">quotient</a> of C²\{0} by the <a href="https://en.wikipedia.org/wiki/Equivalence_relation">equivalence relation</a> which identifies (z₀, z₁) with (λ z₀, λ z₁) for any nonzero complex number λ. On any complex line in C² there is a circle of unit norm, and so the restriction of the <a href="https://en.wikipedia.org/wiki/Quotient_map">quotient map</a> to the points of unit norm is a fibration of S³ over CP¹."</p>
+
+                        <h3>Stereographic Projection from S³ to R³</h3>
+
+                        <p>So the Hopf fibration can be thought of as a map from S³ to CP¹, or to S². But that is not really a visualization tool at all, it is just a
+map. To visualize entities embedded in S³ we can stereographically project to R³.
+I'm not going to summarize how to do that, because it is in a million places on
+the web, e.g. [7].</p>
+
+                        <p>Under stereographic projection of S³ to R³,</p>
+
+                        <ol>
+                            <li>Radial planes in R³ correspond to 2-spheres through N (the north pole, i.e.
+infinity in R³) in S³.</li>
+                            <li>The equator of S³ projects to a sphere, S², of radius 1 centered at the origin
+of R³.</li>
+                        </ol>
+
+                        <p>I initially confused Hopf Circles with Great circles and C² with R⁴. Not every 
+two dimensional plane in R⁴ is a one dimensional subspace of C². Any plane in
+R⁴ that goes through the origin intersects S³ in a great circle. But Hopf circles
+are the intersections of complex lines with S³. Note that unlike for S², two
+great circles need not intersect in S³.</p>
+
+                        <h3>Entities embedded in S³</h3>
+
+                        <h4>1. Clifford Torus.</h4>
+
+                        <p>This is a flat torus that lives in R⁴ and is embedded in S³. "Flat" means it has
+zero Gaussian curvature everywhere. By "embedded in S³", we mean that all
+points on the surface are unit distance from the origin. So both of these statements
+are mind-bending but also strangely intuitive. If you use the standard formula
+for a Clifford Torus and perform stereographic projection:</p>
+
+                        <pre><code>// Clifford Torus Parameterization
+var f=1/Math.sqrt(2);
+var xx=f*Math.cos(u);
+var yy=f*Math.sin(u);
+var zz=f*Math.cos(v);
+var rr=f*Math.sin(v);
+// Stereographic projection:
+var x=xx/(1-rr);
+var y=yy/(1-rr);
+var z=zz/(1-rr);</code></pre>
+
+                        <p>you get… a donut:</p>
+
+                        <p><img src="23-3SphereNotes_files/Screen-Shot-2017-11-17-at-11.57.54-PM-768x620.png" alt="Clifford Torus as donut"></p>
+
+                        <p>However, if you rotate the projection point:</p>
+
+                        <pre><code>var xx = Math.cos(u+theta) *Math.cos(v+phi);
+var yy = Math.cos(u+theta) *Math.sin(v+phi);
+var zz = Math.sin(u+theta) *Math.cos(v+phi);
+var rr = Math.sin(u+theta) *Math.sin(v+phi);</code></pre>
+
+                        <p>you get something that looks like a plane with handles:</p>
+
+                        <p><img src="23-3SphereNotes_files/Screen-Shot-2017-11-18-at-12.04.46-AM-768x496.png" alt="Clifford Torus as plane with handles"></p>
+
+                        <p>I got these formulas from "Sculptures in S³" by Saul Schleimer and Henry
+Segerman, which is a very interesting paper with many practical (as in fun)
+applications.</p>
+
+                        <p>This plane with handles has more structure than it seem, so I left some gaps in
+the surface which brings out the structure more:</p>
+
+                        <p><img src="23-3SphereNotes_files/clifford_torus_gaps.png" alt="Clifford Torus with gaps showing structure"></p>
+
+                        <p>A Clifford torus divides the 3-sphere into 2 solid tori. This was hard for me to
+grasp initially. But if you consider the surface of the donut above (the Clifford torus is a surface), it in-fact divides R³
+into 2 solid tori. It is clear that the inside of the donut is a solid torus, but
+the outside is also a solid torus in the pre-image of the projection, i.e. in
+S³. Perhaps a little sloppy, but that's the intuition.</p>
+
+                        <p>There are other fun parameterizations in the Segerman/Schleimer paper. Here are
+a few I coded up:</p>
+
+                        <div style="padding:56.25% 0 0 0;position:relative;">
+                            <iframe src="https://player.vimeo.com/video/241458584?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Inverted (3,11) Torus Knot"></iframe>
+                        </div>
+                        <script src="https://player.vimeo.com/api/player.js"></script>
+                        <p class="wp-caption-text"><a href="https://vimeo.com/241458584">Inverted (3,11) Torus Knot</a> from <a href="https://vimeo.com/user25899196">Robert Woodley</a> on <a href="https://vimeo.com/">Vimeo</a>.</p>
+
+                        <div style="padding:56.25% 0 0 0;position:relative;">
+                            <iframe src="https://player.vimeo.com/video/243415974?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Trefoil on S3"></iframe>
+                        </div>
+                        <script src="https://player.vimeo.com/api/player.js"></script>
+                        <p class="wp-caption-text"><a href="https://vimeo.com/243415974">Trefoil on S3</a> from <a href="https://vimeo.com/user25899196">Robert Woodley</a> on <a href="https://vimeo.com/">Vimeo</a>.</p>
+
+                        <div style="padding:56.25% 0 0 0;position:relative;">
+                            <iframe src="https://player.vimeo.com/video/243416031?badge=0&amp;autopause=0&amp;player_id=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Trefoil on S3, II."></iframe>
+                        </div>
+                        <script src="https://player.vimeo.com/api/player.js"></script>
+                        <p class="wp-caption-text"><a href="https://vimeo.com/243416031">Trefoil on S3, II.</a> from <a href="https://vimeo.com/user25899196">Robert Woodley</a> on <a href="https://vimeo.com/">Vimeo</a>.</p>
+
+                        <h3>References:</h3>
+
+                        <p>[1] https://math.stackexchange.com/questions/1265551/how-to-verify-whether-r2-is-a-subspace-of-the-complex-vector-space-c2</p>
+
+                        <p>[2] http://www.math.poly.edu/courses/projective_geometry/chapter_three/node1.html</p>
+
+                        <p>[3] http://eusebeia.dyndns.org/4d/vis/10-rot-1</p>
+
+                        <p>[4] Three-dimensional Geometry and Topology, Volume 1. page 103.</p>
+
+                        <p>[5] http://emerald.tufts.edu/~gwalsh01/dissertationfinal.pdf</p>
+
+                        <p>[6] Topology, Geometry, and Gauge Fields, Foundations – Gregory Naber, page 17.</p>
+
+                        <p>[7] Sculptures in S3. Saul Schleimer and Henry Segerman.
+https://arxiv.org/pdf/1204.4952.pdf</p>
+
+                        <p>[8] https://en.wikipedia.org/wiki/Villarceau_circles</p>
+
+                        <p>[9] https://en.wikipedia.org/wiki/Hopf_link</p>
+
+                        <p>[10] https://en.wikipedia.org/wiki/Hopf_fibration</p>
+                    </main>
+                </div>
+                <p>
+                    <a href="22-IntuitionsForSemiDirect.html"><img src="../media/previouspost.png">Intuition for Semi-Direct Products</a>
+                    <span style="float:right;">
+                        <a href="24-DollyZoom.html">Dolly Zoom using Möbius Transforms <img src="../media/nextpost.png" alt="Next Post"></a>
+                    </span>
+                </p>
+                <p><a href="../blog.html">Back to Home</a></p>
+                <div id="footer">
+                    <div style="float: right; margin-right: 1em; ">
+                        <span style="display:block;height:30px;">Copyright (c) <nobr><a href="http://rwoodley.org/" style="color:#aaa;" target="_blank">Robert Woodley</a> 2014-2025</nobr></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

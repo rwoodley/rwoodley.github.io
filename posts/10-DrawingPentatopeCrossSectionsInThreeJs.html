@@ -1,0 +1,124 @@
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Drawing Pentatope Cross-Sections in three.js</title>
+
+	<script>
+		(function (i, s, o, g, r, a, m) {
+			i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+				(i[r].q = i[r].q || []).push(arguments)
+			}, i[r].l = 1 * new Date(); a = s.createElement(o),
+				m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+		})(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+		ga('create', 'UA-41066114-3', 'auto');
+		ga('send', 'pageview');
+
+	</script>
+	<style>
+		li {
+			padding-bottom: .5em; 
+		}
+	</style>
+	<link rel="stylesheet" type="text/css" href="../css/styles.css">
+
+</head>
+
+<body>
+	<!-- Banner.-->
+	<div id="header">
+            <div style="float: left;">
+					<h1 class="sitename"><a href="../blog.html">Drawing Pentatope Cross-Sections in three.js</a></h1>
+				</div>
+
+				<div id="nav">
+						2014/12/27
+				</div>
+
+	</div>
+	<!-- End of Banner.-->
+
+
+	<div class="container">
+		<div class="row">
+
+			<div class="entry">
+
+
+<p>A triangle is the simplest regular figure in 2 dimensions. Its 3 dimensional analogue is a tetrahedron. Its 4 dimensional analogue is the pentatope. Another term for these 3 geometries is: simplex. Many articles online explain these further.</p>
+<p>I wanted to view what it would look like if a pentatope passed through our 3-dimensional space. There are many examples of what the projection of a pentatope onto 3-d space would look like (ie its shadow), but I didn&#8217;t want to do that because while projections can be pretty, they seem less intuitive than cross-sections. </p>
+<p>To summarize, the plan was: take 3-dimensional cross-sections of the pentatope (a 4 dimensional shape). The actual drawing will be done using the 3-dimensional drawing toolkit called three.js.</p>
+<p>Our equation for the 3-dimensional cross-section is:</p>
+<pre>
+    ax+by+cz+K = w
+
+</pre>
+<p>This is a linear equation; we&#8217;re not dealing with curved cross-sections for now, though that would be fun. a,b, and c are constants. x,y,z, and w are the 4 axes. K is a constant that we change to get different cross-sections.</p>
+<p>But why do we need 4 dimensions to describe a 3-dimensional space? Because we are locating that 3-d space in 4 dimensions. Just as the equation for a plane in 3-d space requires 3 dimensions (e.g. x+y = z describes a plane in 3-d space).</p>
+<p>What about our equation for pentatope? Well we don&#8217;t have an equation, but we have a collection of points. Our pentatope has 5 corners. Lines connect each point to every other point, resulting in 10 lines. These 10 lines in turn form 10 faces (2-d planes). These 10 faces in turn from 5 3-d tetrahedrons.</p>
+<p>Note that in general:<br />
+&#8211; The intersection of a 4-d line and a 3-d space is a point.<br />
+&#8211; The intersection of a 4-d plane and a 3-d space is a line.<br />
+&#8211; The intersection of a 4-d volume and a 3-d space is a plane.<br/>
+<i>(I say "in general" because there is the special case where the entity intersecting in fact lies 
+entirely in the subspace. For example a 4-d line could lie entirely in a 3-d space. In that case the intersection is the line itself.)</i></p>
+
+<p>Our cross-section is going to look like a wire-frame, in other words a collection of lines. So we will capture the intersection of the pentatope&#8217;s faces with our cross-sectional space.</p>
+<p>Our pseudo-code would look like this:</p>
+<pre>
+foreach (face in faces) {   // 10 of these
+  // Each face is a triangle. Lets name the vertices p0, p1, p2. These points have 4-d coords.
+  // point1 and 2 will be the points we use to draw a line in 3-d space using three.js.
+  // they have 3-d coords of course.
+  point1 = calculateIntersectionOfLineWithSpace(p0,p1); 
+  point2 = calculateIntersectionOfLineWithSpace(p0,p2);
+  drawLineUsingThreeJS(point1, point2);
+}
+
+</pre>
+<p>So the interesting bit is in &#8216;calculateIntersectionOfLineWithSpace()&#8217;:</p>
+<p>We must use parametric equations to work with lines in dimensions higher than 2. The parametric form for a line defined by the points p0 and p1 is: </p>
+<pre>
+    p = p0 + t*v   (1)
+
+    where v = p1 - p0.
+
+</pre>
+<p>We need to calculate what the value of t is at the intersection with our cross-sectional space. (p0 and p1 are the vertices of one of the faces of our pentatope.) So we need to solve for t. </p>
+<pre>
+    t = (Pt - P0)/V
+
+</pre>
+<p>Pt is the point of intersection of the line with the cross-sectional space. Given our formula above for our 3-d cross-sectional space, the equation for t is:</p>
+<pre>
+    t = (W0-aX0-bY0-cZ0-K)/(aXv+bYv+cZv-Wv)
+
+    Where P0 = (X0, Y0, Z0, W0) and V is (Xv, Yv, Zv, Wv). 
+
+</pre>
+<p>Plugging t into equation (1) above we calculate the point of intersection of our 4-d line with our 3-d space. We return (x,y,z) from &#8216;calculateIntersectionOfLineWithSpace()&#8217; above, discarding w.</p>
+<p>And we simply change K to see different cross-sections. The animated result is 
+<a href="10-DrawingPentatopeCrossSectionsInThreeJs_files/app/index.html">here.</a></p>
+<p>A still:<br />
+    <img alt="snap" src="./10-DrawingPentatopeCrossSectionsInThreeJs_files/snap.png"></p>
+
+</div>
+
+                <p>
+                    <a href="09-HighDimensionSpaces.html"><img src="../media/previouspost.png">High Dimension Spaces</a>
+                    <span style="float:right;">
+                        <a href="11-RotationsTransformationsGeometriesAndMeshes.html">Rotations, Transformations, Geometries and Meshes <img src="../media/nextpost.png" alt="Next Post"></a>
+                    </span>
+                </p>
+                <p><a href="../blog.html">Back to Home</a></p>
+                <div id="footer">
+                    <div style="float: right; margin-right: 1em; ">
+                        <span style="display:block;height:30px;">Copyright (c) <nobr><a href="http://rwoodley.org/" style="color:#aaa;" target="_blank">Robert Woodley</a> 2014-2025</nobr></span>
+                    </div>
+                </div>
+</div>
+</div>
+</body>
+
+</html>

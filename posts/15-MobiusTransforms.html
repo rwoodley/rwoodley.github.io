@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Möbius Transformations on Spherical Photos and Videos</title>
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+    <style>
+        .wp-caption {
+            background-color: #fff; /* White background for the box */
+            border: 1px solid #ddd; /* Light grey border */
+            padding: 4px;           /* Padding around image and caption */
+            margin-bottom: 1.5em;   /* Space below the caption box */
+            box-sizing: border-box; /* Ensures padding/border are within the width */
+            display: block;         /* Ensure it's block for auto margins */
+            margin-left: auto;      /* Center the caption box */
+            margin-right: auto;     /* Center the caption box */
+            max-width: 610px; /* Max width for the caption box */
+        }
+        .wp-caption img {
+            display: block;         /* Remove extra space under image and allow centering */
+            max-width: 100%;        /* Responsive image */
+            height: auto;           /* Maintain aspect ratio */
+            margin-left: auto;      /* Center image if narrower than caption box content area */
+            margin-right: auto;
+        }
+        .wp-caption p.wp-caption-text { /* Style for the caption paragraph */
+            font-size: 0.9em;
+            line-height: 1.4;
+            margin: 5px 0 0;        /* Space above caption text */
+            color: #333;            /* Dark grey text color */
+            text-align: center;     /* Center the text itself */
+        }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <div style="float: left;">
+            <h1 class="sitename"><a href="../blog.html">Möbius Transformations on Spherical Photos and Videos</a></h1>
+        </div>
+
+        <div id="nav">
+            2016/09/12
+        </div>
+
+    </div>
+
+
+    <div class="container"> <!-- Added container div -->
+        <div class="row"> <!-- Added row div -->
+            <div class="entry"> <!-- Changed post-content to entry -->
+
+                <p>Spherical Video presents some interesting challenges, for instance, how do you zoom? Or how do you rotate on any arbitrary axis? As the mathematician Henry Segerman pointed out in <a href="http://elevr.com/spherical-video-editing-effects-with-mobius-transformations/">a post</a> for EleVR, you can achieve both of the above using Möbius transformations. The transformations are conformal (they preserve angles), and they map circles to circles (considering a line to be a circle of infinite radius). Professor Segerman’s work is the inspiration for the project I am describing here.</p>
+
+                <p>I wrote an implementation using Möbius transformations to manipulate spherical images in WebGL/Three.js. The implementation is <a href="http://rwoodleymedia.org/complexFun/transform.html">here</a>. Click on the ‘?’ for help or watch <a href="https://youtu.be/_R5nX_QWJ2Q">this video</a>.</p>
+
+                <p>So what is going on here?</p>
+
+                <h3>The mathematical procedure:</h3>
+                <p>Spherical cameras such as the Ricoh Theta save images in an equirectangular format. This is then wrapped around a sphere to give the spherical effect. (With three.js you create a material whose texture is the saved image from the Theta and then create a mesh using this material and a sphere geometry.) The X and Y of the equirectangular format map to the longitude and latitude of the sphere.</p>
+                <p>The Riemann sphere is a representation of the complex plane as a sphere using reverse stereographic projection. Möbius transformations are transformations of the complex plane. Our three.js sphere is a normal sphere in 3-d cartesian space (R3); each point on its surface has an (x,y,z) coordinate where x, y and z are real numbers. We can convert our x,y,z point to a point in the complex plane if we take our sphere to be a Riemann sphere. Or in jargon we can say equivalently: P¹(C) is diffeomorphic to the sphere S². The formulas are <a href="http://math.stackexchange.com/questions/1219406/how-do-i-convert-a-complex-number-to-a-point-on-the-riemann-sphere">here</a> (and elsewhere).</p>
+                <p>So for instance the south pole is (0,0,-1) in cartesian/R3 space and (0,0i) in complex space. The north pole is (0,0,1) in cartesian space/R3 and (∞, ∞i) in complex space. (The Reimann sphere is really the complex plane plus one point which is the point at the north pole, but I digress).</p>
+                <div class="wp-caption alignnone" style="width: 610px">
+                    <img src="15-MobiusTransforms_files/post-15-riemannkugel.jpg" alt="Riemann Sphere">
+                    <p class="wp-caption-text">The Riemann Sphere <a href="http://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=1357613">https://commons.wikimedia.org/w/index.php?curid=1357613</a></p>
+                </div>
+
+                <h3>The technical procedure:</h3>
+                <p>To implement our transformations, we are going to move pixels around on the texture. We can only do this in the shader since doing it in javascript would be way to slow. Specifically we are going to do it in the fragment shader. Our vertex shader will be short and boring, doing only what is necessary to build the sphere’s vertices. Nothing special there. The fragment shader is where the work is done.</p>
+                <p>The fragment shader is called when the graphics layer needs to know what color to put at a given UV coordinate. We will pluck that pixel from our transformed texture. The steps to execute on each call to the fragment shader are:</p>
+                <ol>
+                    <li>Get the UV coordinates. ‘UV’ is industry nomenclature for the X and Y coordinates of the texture that the graphics layer is trying to draw.</li>
+                    <li>We know that the rectangular texture must map to a sphere. The top of the rectangle maps to the north pole, the bottom to the south pole. So we can calculate the X, Y, and Z coordinate of the sphere corresponding to the UV coordinate. That is, we know which point of the sphere we are drawing.</li>
+                    <li>This sphere is also a Riemann sphere as mentioned above, so we calculate the point (a + bi) on the complex plane corresponding to the cartesian point (X,Y,Z) on the sphere, using the formulas mentioned above.</li>
+                    <li>We now know our location on the complex plane and we apply as many transformations as we’d like. When we are done we have our new complex point (c + di).</li>
+                    <li>We reverse the above steps and calculate the cartesian X,Y,Z corresponding to (c + di). Then we calculate the UV corresponding to this X,Y,Z and we use the color at that pixel, UV.</li>
+                </ol>
+                <p>The only Möbius transformations I’ve implemented for now are those to do rotation and zoom. By default the fixed points are antipodal though you can explicitly set the fixed points using the Epsilon 1 and Epsilon 2 buttons. The video linked to above gives a good overview of what all the different buttons do.</p>
+                <p>This is a rotation around 2 non-antipodal fixed points:</p>
+                <div class="wp-caption alignnone" style="width: 610px">
+                    <img src="15-MobiusTransforms_files/post-15-rotation.png" alt="Rotation Example">
+                    <p class="wp-caption-text">Rotation around 2 non-antipodal fixed points</p>
+                </div>
+                <p>In addition to Möbius transforms to do rotation and zoom, there are some other complex transformation options.</p>
+                <div class="wp-caption alignnone" style="width: 610px">
+                    <img src="15-MobiusTransforms_files/post-15-complex-transform.png" alt="Complex Transformation Example">
+                    <p class="wp-caption-text">Other complex transformation options</p>
+                </div>
+                <p>You may have noticed that we start with the point on the complex plane (a + bi) for which we need a pixel. We then transform (a + bi) into (c + di) to get the pixel we will draw. Thus the transformation is really a reverse transformation.</p>
+                <p>Infinities of volleyball players on North Avenue Beach (Works at 60FPS on video!):</p>
+                <div class="wp-caption alignnone" style="width: 610px">
+                    <img src="15-MobiusTransforms_files/post-15-volleyball.png" alt="Volleyball Example">
+                    <p class="wp-caption-text">Infinities of volleyball players</p>
+                </div>
+                <p><a href="http://archive.bridgesmathart.org/2016/bridges2016-15.pdf">This article</a> by Henry Segerman gives a comprehensive overview of the math behind these transformations and includes more examples of other transformations you can do.</p>
+            
+                <p>
+                    <a href="14-ThoughtBubbles.html"><img src="../media/previouspost.png" alt="Previous Post"> Thought Bubbles</a>
+                    <span style="float:right;">
+                        <a href="16-PrivateCribSheet.html">Private Crib Sheet<img src="../media/nextpost.png" alt="Next Post"></a>
+                    </span>
+                </p>
+                <p><a href="../blog.html">Back to Home</a></p>
+                <hr>
+            </div> <!-- Closed entry div -->
+    <div id="footer">
+        <div style="float: right; margin-right: 1em; ">
+            <span style="display:block;height:30px;">Copyright (c) <nobr><a href="http://rwoodley.org/" style="color:#aaa;" target="_blank">Robert Woodley</a> 2014-2025</nobr></span>
+        </div>
+    </div>
+        </div> <!-- Closed row div -->
+    </div> <!-- Closed container div -->
+
+</body>
+</html>

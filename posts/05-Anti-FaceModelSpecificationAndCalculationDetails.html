@@ -1,0 +1,122 @@
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Anti-Face Model Specification And Calculation Details</title>
+
+    <script>
+		(function (i, s, o, g, r, a, m) {
+			i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+				(i[r].q = i[r].q || []).push(arguments)
+			}, i[r].l = 1 * new Date(); a = s.createElement(o),
+				m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+		})(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+		ga('create', 'UA-41066114-3', 'auto');
+		ga('send', 'pageview');
+
+
+    </script>
+    <style>
+		li {
+			padding-bottom: .5em;
+		}
+
+    </style>
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+
+</head>
+
+<body>
+<!-- Banner.-->
+<div id="header">
+    <div style="float: left;">
+        <h1 class="sitename"><a href="../blog.html">Anti-Face Model Specification And Calculation Details</a>
+        </h1>
+    </div>
+
+    <div id="nav">
+        2013/10/05
+    </div>
+
+</div>
+<!-- End of Banner.-->
+
+
+<div class="container">
+    <div class="row">
+
+        <div class="entry">
+
+
+            <p><strong>Update 10/2018</strong>: I have not updated the app as required by Apple, so it is no longer
+                available in the App Store. So no new faces are being
+                added to the archive. However you can see existing faces and anti-faces here: <a
+                        href="http://antiface.net/">http://antiface.net/</a></p>
+            <p><strong>Update 10/2013</strong>: We have implemented this in a free iPhone app which is available here:
+            </p>
+            <p style="padding-left: 30px;"><a href="https://itunes.apple.com/us/app/anti-face/id690376775"
+                                              target="_blank">https://itunes.apple.com/us/app/anti-face/id690376775</a>
+            </p>
+            <p>&nbsp;</p>
+            <p>Our site <a href="http://facefield.org/">FaceField.org</a> (and now the iPhone app) uses the EigenFaces
+                methodology as implemented in Open CV to calculate a special kind of face that we have labelled an ‘Anti
+                Face’.</p>
+            <p>Model specification:<br>
+                – Over 1000 faces were used.<br>
+                – The faces were all facing the camera straight-on. We used <a
+                        title="Constrain Face Detection for better Face Recognition" href="02-ConstrainFaceDetectionforBetterFaceRecognition.html">a
+                    specially designed Haar classifier</a> to ensure that we excluded faces looking to the side.<br>
+                – The faces that we fed into the PCA calculation are slightly larger than what the Haar classifier
+                detected so that we didn’t cut off the chins.<br>
+                – The faces were all subject to histogram equalization.<br>
+                – The faces were all sized to 200×200 pixels.<br>
+                – We took the first 60 eigenvectors.</p>
+            <p>The Antiface calculation is simple: we do a subspace projection of the uploaded face into the
+                60-dimensional EigenFace space. It is interesting to view this ‘reconstructed face’ as we call it. In a
+                normal face recognition calculation you would then compute the nearest face to this reconstructed face.
+                The anti-face is simply the reconstructed face except that every weight is multiplied by -1.</p>
+            <p>In other words:</p>
+            <p style="padding-left: 30px;">Let Ω ∋ R⁶⁰ be the subspace projection of the uploaded face.</p>
+            <p style="padding-left: 30px;">Ω=(w₁,w₂,..w₆₀) where wᵢ= uᵢᵀ(Γ-Ψ) for i=1…60.</p>
+            <p style="padding-left: 30px;">u ∋ R⁶⁰ is the Eigenface. Γ is the uploaded face image and Ψ is the mean
+                face.</p>
+            <p style="padding-left: 30px;">Then the antiface, Ω’ is (-1*w₁,-1*w₂,..-1*w₆₀).</p>
+            <p>So prominent features in the reconstructed faces (with high weighting, meaning far from the mean) would
+                be equally prominent, though opposite, in the anti-face.</p>
+            <p><a href="./05-Anti-FaceModelSpecificationAndCalculationDetails_files/gandhi.png"><img
+                    src="./05-Anti-FaceModelSpecificationAndCalculationDetails_files/gandhi.png"></a></p>
+            <p>Why 60 dimensions? Originally we tried higher numbers like 200 because at that point the reconstructed
+                face looks indistinguishable from the original face. However the anti-face looks very little like a face
+                and is highly distorted and muddied. It seems that it such high-dimension space not everything looks
+                like a face, however in a lower dimension space like 60 you’re likely to get a face no matter where you
+                land.</p>
+            <p>Two Face/Anti-Face pairs as examples:</p>
+            <p>
+                <a href="./05-Anti-FaceModelSpecificationAndCalculationDetails_files/Screen-Shot-2013-10-04-at-9.10.16-PM.png"><img
+                        src="./05-Anti-FaceModelSpecificationAndCalculationDetails_files/Screen-Shot-2013-10-04-at-9.10.16-PM.png">
+                </a></p>
+            <p>
+                <a href="./05-Anti-FaceModelSpecificationAndCalculationDetails_files/Screen-Shot-2013-10-04-at-9.22.28-PM.png"><img
+                        src="./05-Anti-FaceModelSpecificationAndCalculationDetails_files/Screen-Shot-2013-10-04-at-9.22.28-PM.png">
+                </a></p>
+
+        </div>
+
+                <p>
+                    <a href="04-VisualizingFactorsAndPrimeFactorization.html"><img src="../media/previouspost.png" >Visualizing Factors and Prime Factorization</a>
+                    <span style="float:right;">
+                        <a href="06-HairyBlob.html">The Hairy Blob, 800 Ping Pong Balls, and a Mindstorms RoboCam <img src="../media/nextpost.png" alt="Next Post"></a>
+                    </span>
+                </p>
+                <p><a href="../blog.html">Back to Home</a></p>
+                <div id="footer">
+                    <div style="float: right; margin-right: 1em; ">
+                        <span style="display:block;height:30px;">Copyright (c) <nobr><a href="http://rwoodley.org/" style="color:#aaa;" target="_blank">Robert Woodley</a> 2014-2025</nobr></span>
+                    </div>
+                </div>
+    </div>
+</div>
+</body>
+
+</html>

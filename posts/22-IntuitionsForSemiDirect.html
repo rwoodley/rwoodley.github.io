@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intuition for Semi-Direct Products</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <div id="header">
+        <div style="float: left;">
+            <h1 class="sitename"><a href="../blog.html">Intuition for Semi-Direct Products</a></h1>
+        </div>
+        <div id="nav">
+            2017/10/19
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="entry">
+                <div class="post-content">
+                    <main>
+                        <h3>Example 1: C₃⋊C₂ = S₃</h3>
+
+                        <p>You can't do the complicated stuff with being clear on the simple stuff. So to
+clarify semi-direct products lets start with pretty much the simplest case.</p>
+
+                        <p>C₃×C₂ = C₆ is a direct product. Thus, C₃ and C₂ are normal subgroups of the
+cyclic group C₆ which has order 6.</p>
+
+                        <p>C₃⋊C₂ = S₃ is a semi-direct product. Only C₃ is a subgroup of the symmetric
+group S₃ which also has order 6.</p>
+
+                        <p>C₆ and S₃ are the only 2 groups of order 6.</p>
+
+                        <p>C₃ has 2 automorphisms, the identity automorphism: {e ↦ e, y ↦ y, y² ↦ y²} and a bijective one: {e ↦ e, y ↦y², y² ↦ y}</p>
+
+                        <p>The identity automorphism is used in the first, direct product, case to build
+C₆.</p>
+
+                        <p>The bijective automorphism of C₃ is used to build S₃. The second Cayley diagram
+below for S₃ shows how C₂ is used to map the identity automorphism to the
+bijective one via a semi-direct product. The inner circle goes in the reverse
+direction of the outer circle.</p>
+
+                        <p>Here is the Cayley diagram for C₆ from the great free program Group Explorer:</p>
+
+                        <p><img src="22-IntuitionsForSemiDirect_files/Screen-Shot-2017-10-19-at-9.57.02-PM.png" alt="Cayley diagram for C6"></p>
+                        <p class="wp-caption-text">Figure 1</p>
+
+                        <p>And for S₃:</p>
+
+                        <p><img src="22-IntuitionsForSemiDirect_files/Screen-Shot-2017-10-19-at-9.53.56-PM.png" alt="Cayley diagram for S3"></p>
+                        <p class="wp-caption-text">Figure 2</p>
+
+                        <p>Generators for S₃ are r³= f²= 1. And fr=r²f.</p>
+
+                        <p>S₃ is isomorphic to the dihedral group of same order, sometimes called D₃,
+sometimes called D₆.</p>
+
+                        <p>So that's the simple case. Let's move up to the a larger example: A₄.</p>
+
+                        <h3>Example 2: (C₂×C₂)⋊C₃ = A₄</h3>
+
+                        <p>(C₂×C₂) is the Klein 4 group, aka V₄. V₄ is normal in A₄, so the semi-direct
+product of v₄⋊C₃ will involve an automorphism of V₄ by C₃.</p>
+
+                        <p>The automorphism group of V₄ is isomorphic to S₃:</p>
+
+                        <p><img src="22-IntuitionsForSemiDirect_files/Screen-Shot-2017-10-20-at-11.03.18-PM-2.png" alt="Automorphism group of V4"></p>
+                        <p class="wp-caption-text">Figure 3</p>
+
+                        <p>This arrangement shows the isomorphism to S₃ clearly:</p>
+
+                        <p><img src="22-IntuitionsForSemiDirect_files/Screen-Shot-2017-10-20-at-11.03.18-PM-2-1.png" alt="Automorphism group of V4 showing isomorphism to S3"></p>
+                        <p class="wp-caption-text">Figure 4</p>
+
+                        <p>So we're looking for an intuition of the semi-direct product, V₄⋊C₃ = A₄. S₃ has
+C₃ as a subgroup (as we saw in the first part of this post), so there are two
+homomorphisms from C₃ to S₃, those would be the outer ring and the inner ring in
+Figure 4, or the left and right columns respectively in Figure 3. Choosing the
+injective one (the inner ring) gives us A₄ which might be portrayed something
+like this:</p>
+
+                        <p><img src="22-IntuitionsForSemiDirect_files/Screen-Shot-2017-10-20-at-11.51.47-PM-2.png" alt="A4 as semi-direct product"></p>
+                        <p class="wp-caption-text">Figure 5</p>
+
+                        <p>The point of Figure 4 is to provide an intuition showing that A₄ is the
+semi-direct product of C₃ and the injective automorphism of V₄. I don't find the wiring
+diagrams of the V₄ automorphisms in Figure 3 very intuitive, but Figures 4
+demonstrates that there are 2 possibilities when choosing the automorphisms, one
+choice (the outer ring in Figure 4) leads to a direct product, the other choice
+leads to the semi-direct product A₄ as shown in Figure 5.</p>
+
+                        <h3>References:</h3>
+
+                        <p>[1] Algebra: Chapter 0, Part 0. By Paolo Aluffi. Page 232.</p>
+
+                        <p>[2] http://www.weddslist.com/groups/building/sdp.html</p>
+
+                        <p>[3] Visual Group Theory by Nathan Carter</p>
+
+                        <p>[4] Slides by Matthew Macauley, Clemson University. Notes for Math 4120. 
+http://www.math.clemson.edu/~macaule/classes/m17_math4120/index.html</p>
+                    </main>
+                </div>
+                <p>
+                    <a href="21-IntuitionsForSU2SO3.html"><img src="../media/previouspost.png">Intuitions for SU(2) and SO(3)</a>
+                    <span style="float:right;">
+                        <a href="23-3SphereNotes.html">3-Sphere notes <img src="../media/nextpost.png" alt="Next Post"></a>
+                    </span>
+                </p>
+                <p><a href="../blog.html">Back to Home</a></p>
+                <div id="footer">
+                    <div style="float: right; margin-right: 1em; ">
+                        <span style="display:block;height:30px;">Copyright (c) <nobr><a href="http://rwoodley.org/" style="color:#aaa;" target="_blank">Robert Woodley</a> 2014-2025</nobr></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

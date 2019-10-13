@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Mercator Projection</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <div id="header">
+        <div style="float: left;">
+            <h1 class="sitename"><a href="../blog.html">The Mercator Projection</a></h1>
+        </div>
+        <div id="nav">
+            2018/06/04
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="entry">
+                <div class="post-content">
+                    <main>
+                        <p>The much-maligned Mercator Projection is indeed unsuitable for maps (famously it
+renders Greenland as large as Africa when in fact it is as large as Saudi
+Arabia):</p>
+
+                        <p><img src="25-MercatorProjection_files/mercator_projection_world_map.jpg" alt="Mercator Projection World Map" style="max-width: 100%; height: auto;"></p>
+
+                        <p>What is rarely mentioned is that the Mercator projection is infinite. That is,
+if you extended it further north and further south the magnification would become
+more and more extreme. David Swart has a <a href="https://www.youtube.com/watch?v=jn767ayiwYM">TedX video</a> on it and has worked extensively with its mathematics. He has also created many
+amazing and whimsical projections.</p>
+
+                        <p>Drew Roos has written a program (<a href="https://mrgris.com/projects/merc-extreme/">here</a>) that demonstrates this. Here is an example:</p>
+
+                        <p><img src="25-MercatorProjection_files/extreme_mercator_example.jpg" alt="Extreme Mercator Projection Example" style="max-width: 100%; height: auto;"></p>
+
+                        <p>So the above projection is the same view as the first one except, a) it is
+turned on its side, and b) it extends much further – getting asymptotically closer to
+the north pole on the right and the south pole on the left with higher and
+higher degrees of magnification.</p>
+
+                        <p>Since his images come from Google there is a limit to how much magnification he
+can do. But you can certainly zoom in as far as Google can (to the city block
+say).</p>
+
+                        <p>There is no reason the north and south poles have to be, um, at the poles. We
+can choose any pair of antipodes to be poles. For instance here is what it looks
+like if we put the Arc De Triomphe at the north pole.</p>
+
+                        <p><img src="25-MercatorProjection_files/arc_de_triomphe_projection.jpg" alt="Arc de Triomphe as North Pole" style="max-width: 100%; height: auto;"></p>
+
+                        <p>Note the radiating spokes of the streets emanating from Place de L'Etoile.</p>
+
+                        <p>Apparently Angor Wat is exactly antipodal to a town in Chincha Province, Peru:</p>
+
+                        <p><img src="25-MercatorProjection_files/angkor_wat_antipodal.jpg" alt="Angkor Wat Antipodal Projection" style="max-width: 100%; height: auto;"></p>
+
+                        <p>And Wellington, NZ is antipodal to Alaejos Spain:</p>
+
+                        <p><img src="25-MercatorProjection_files/wellington_antipodal.jpg" alt="Wellington NZ Antipodal Projection" style="max-width: 100%; height: auto;"></p>
+
+                        <p>And Hong Kong is antipodal to La Quiaca Argentina:</p>
+
+                        <p><img src="25-MercatorProjection_files/hong_kong_antipodal.jpg" alt="Hong Kong Antipodal Projection" style="max-width: 100%; height: auto;"></p>
+
+                        <p>Anyhow play with it yourself here: <a href="https://mrgris.com/projects/merc-extreme/">https://mrgris.com/projects/merc-extreme/</a></p>
+
+                        <p>The site <a href="https://www.antipodesmap.com/">antipodesmap.com</a> was useful for finding interesting antipodal pairs.</p>
+
+                        <p>And do check out that video by David Swart for all the details.</p>
+
+                        <p>The map at the top is from the Wikipedia article on the Mercator Projection.</p>
+                    </main>
+                </div>
+                <p>
+                    <a href="24-DollyZoom.html"><img src="../media/previouspost.png">Dolly Zoom using Möbius Transforms</a>
+                    <span style="float:right;">
+                        <a href="26-DeleuzeNotes.html">Deleuze Notes: Desiring Production <img src="../media/nextpost.png" alt="Next Post"></a>
+                    </span>
+                </p>
+                <p><a href="../blog.html">Back to Home</a></p>
+                <div id="footer">
+                    <div style="float: right; margin-right: 1em; ">
+                        <span style="display:block;height:30px;">Copyright (c) <nobr><a href="http://rwoodley.org/" style="color:#aaa;" target="_blank">Robert Woodley</a> 2014-2025</nobr></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

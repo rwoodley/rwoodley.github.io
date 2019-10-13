@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Thought Bubbles</title>
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+    <style>
+        li { padding-bottom: .5em; }
+        pre { white-space: pre-wrap; word-wrap: break-word; background-color: #000000; color: #00FF00; border: 1px solid #ccc; padding: 10px; margin: 10px 0; display: block; font-family: monospace; }
+        .wp-caption {
+            background-color: #fff; /* White background for the box */
+            border: 1px solid #ddd; /* Light grey border */
+            padding: 4px;           /* Padding around image and caption */
+            margin-bottom: 1.5em;   /* Space below the caption box */
+            box-sizing: border-box; /* Ensures padding/border are within the width */
+            display: block;         /* Ensure it's block for auto margins */
+            margin-left: auto;      /* Center the caption box */
+            margin-right: auto;     /* Center the caption box */
+        }
+        .wp-caption img {
+            display: block;         /* Remove extra space under image and allow centering */
+            max-width: 100%;        /* Responsive image */
+            height: auto;           /* Maintain aspect ratio */
+            margin-left: auto;      /* Center image if narrower than caption box content area */
+            margin-right: auto;
+        }
+        .wp-caption p.wp-caption-text { /* Style for the caption paragraph */
+            font-size: 0.9em;
+            line-height: 1.4;
+            margin: 5px 0 0;        /* Space above caption text */
+            color: #333;            /* Dark grey text color */
+            text-align: center;     /* Center the text itself */
+        }
+    </style>
+</head>
+<body>
+    <!-- Banner.-->
+    <div id="header">
+        <div style="float: left;">
+            <h1 class="sitename"><a href="../blog.html">Thought Bubbles</a></h1>
+        </div>
+        <div id="nav">
+            2016/08/27
+        </div>
+    </div>
+    <!-- End of Banner.-->
+    <div class="container">
+        <div class="row">
+            <div class="entry">
+
+                <p>A window is a two-dimensional hole in a two-dimensional plane that allows you to see into a three-dimensional world. So what if we could make three-dimensional holes?</p>
+                <p>The original idea came from a three.js <a href="http://threejs.org/examples/webgl_materials_shaders_fresnel.html">demo by altered qualia</a> where he was demo&#8217;ing fresnel shaders:</p>
+                <div id="attachment_1180" style="width: 610px" class="wp-caption alignnone"><a href="https://rwoodley.org/wp-content/uploads/2016/08/01-start-e1472329657615.png"><img fetchpriority="high" decoding="async" width="583" height="512" class="myImage alignnone size-full wp-image-1179" src="14-ThoughtBubbles_files/01-start-e1472329657615.png" srcset="14-ThoughtBubbles_files/01-start-e1472329657615.png 583w, 14-ThoughtBubbles_files/01-start-e1472329657615-300x263.png 300w" sizes="(max-width: 583px) 100vw, 583px" /></a><p id="caption-attachment-1180" class="wp-caption-text">Fresnel Shader Demo</p></div>
+                <p>I didn&#8217;t care much about fresnel shaders, but was intrigued by the bubbles. I realized that rendering the outer sphere was not needed to render the bubbles:</p>
+                <div id="attachment_1181" style="width: 610px" class="wp-caption alignnone"><a href="https://rwoodley.org/wp-content/uploads/2016/08/02-bubbles.png"><img decoding="async" class="myImage alignnone size-full wp-image-1179" src="14-ThoughtBubbles_files/02-bubbles.png"  /></a><p id="caption-attachment-1181" class="wp-caption-text">Bubbles Only</p></div>
+                <p>These bubbles are three-dimensional windows that can be taken anywhere. Spherical holograms.</p>
+                <div id="attachment_1182" style="width: 610px" class="wp-caption alignnone"><a href="https://rwoodley.org/wp-content/uploads/2016/08/03-utah.png"><img decoding="async" class="myImage alignnone size-full wp-image-1179" src="14-ThoughtBubbles_files/03-utah.png"  /></a><p id="caption-attachment-1182" class="wp-caption-text">Spherical Holograms</p></div>
+                <p><a href="14-ThoughtBubbles_files/91a-TrippyBubblesWithSkyDome/app/index.html"><br />
+                <img decoding="async" class="myImage alignnone size-full wp-image-1179" src="14-ThoughtBubbles_files/04-esoAnimate.gif"  /><br />
+                </a></p>
+                <p>To render the above image, you need 2 cameras, each one looking at a separate texture. Now look at this next image. If we flood Michigan avenue we need 2 cameras as well, one for the surrounding sphere, and one to capture the reflection as well.</p>
+                <div id="attachment_1183" style="width: 610px" class="wp-caption alignnone"><a href="https://rwoodley.org/wp-content/uploads/2016/08/05-chicago.png"><img decoding="async" class="myImage alignnone size-full wp-image-1179" src="14-ThoughtBubbles_files/05-chicago.png"  /></a><p id="caption-attachment-1183" class="wp-caption-text">Flooded Michigan Avenue</p></div>
+                <p>We can view the scene of a flooded Michigan Avenue at home, via one of our holo-bubbles from above. The camera count is now 3, and you have to deal with the fact that while you want them all to turn in sync, some will need to be more wider angle than others. </p>
+                <p><a href="14-ThoughtBubbles_files/57-Globes/app/index.html"><br />
+                <img decoding="async" class="myImage alignnone size-full wp-image-1179" src="14-ThoughtBubbles_files/05b-floodedSpheres.png"  /><br />
+                </a></p>
+                <p>We can make the inner camera have such a wide angle that it captures the zenith and the nadir, and the cursor both zooms and moves in space. It is a very sensitive. (Try it!).</p>
+                <p><a href="14-ThoughtBubbles_files/64-Lillies/app/index.html"><br />
+                <img decoding="async" class="myImage alignnone size-full wp-image-1179" src="14-ThoughtBubbles_files/07-wideAngle.png"  /><br />
+                </a></p>
+                <p>This final image is one of the strangest I&#8217;ve made to date. Only one camera, with the sphere in the middle seemingly refracting the surroundings but even though the image is in the sphere is reversed it tracks the outer image as they rotate. How is this possible?<br />
+                <a href="14-ThoughtBubbles_files/58-CardinalChild/app/main.html"><br />
+                <img decoding="async" class="myImage alignnone size-full wp-image-1179" src="14-ThoughtBubbles_files/06-cardinalChild.png"  /><br />
+                </a></p>
+                <p>Most of the above images can and should be clicked to see the rendering in WebGL.</p>
+
+                <p>
+                    <a href="13-ComplexSurfaces.html"><img src="14-ThoughtBubbles_files/previouspost.png" alt="Previous Post"> Complex Surfaces</a>
+                    <span style="float:right;">
+                        <a href="15-MobiusTransforms.html">Möbius Transformations on Sph... <img src="14-ThoughtBubbles_files/nextpost.png" alt="Next Post"></a>
+                    </span>
+                </p>
+                <p><a href="../blog.html">Back to Home</a></p>
+                <hr>
+            </div>
+    <div id="footer">
+        <div style="float: right; margin-right: 1em; ">
+            <span style="display:block;height:30px;">Copyright (c) <nobr><a href="http://rwoodley.org/" style="color:#aaa;" target="_blank">Robert Woodley</a> 2014-2025</nobr></span>
+        </div>
+    </div>
+        </div>
+    </div>
+</body>
+</html>

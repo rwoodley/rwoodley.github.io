@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Möbius Transformations on Spherical Photos and Videos</title>
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+    <style>
+        .wp-caption {
+            background-color: #fff; /* White background for the box */
+            border: 1px solid #ddd; /* Light grey border */
+            padding: 4px;           /* Padding around image and caption */
+            margin-bottom: 1.5em;   /* Space below the caption box */
+            box-sizing: border-box; /* Ensures padding/border are within the width */
+            display: block;         /* Ensure it's block for auto margins */
+            margin-left: auto;      /* Center the caption box */
+            margin-right: auto;     /* Center the caption box */
+            max-width: 610px; /* Max width for the caption box */
+        }
+        .wp-caption img {
+            display: block;         /* Remove extra space under image and allow centering */
+            max-width: 100%;        /* Responsive image */
+            height: auto;           /* Maintain aspect ratio */
+            margin-left: auto;      /* Center image if narrower than caption box content area */
+            margin-right: auto;
+        }
+        .wp-caption p.wp-caption-text { /* Style for the caption paragraph */
+            font-size: 0.9em;
+            line-height: 1.4;
+            margin: 5px 0 0;        /* Space above caption text */
+            color: #333;            /* Dark grey text color */
+            text-align: center;     /* Center the text itself */
+        }
+        .mwe-math-fallback-image-inline {
+            background-color: white;
+            filter: invert(1);
+        }
+        img[src*="wstein.org"] {
+            background-color: white;
+            filter: invert(1);
+        }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <div style="float: left;">
+            <h1 class="sitename"><a href="../blog.html">Crib Sheet on Mathematical Groups</a></h1>
+        </div>
+
+        <div id="nav">
+            2017/07/23
+        </div>
+
+    </div>
+<p></p>
+    <div class="container"> <!-- Added container div -->
+        <div class="row"> <!-- Added row div -->
+            <div class="entry"> <!-- Changed post-content to entry -->
+
+                 					<div>This is just a bunch of quotes I&#8217;ve pulled off of Wikipedia and elsewhere. I tried to get a handle on some of the basic groups used in hyperbolic tilings and complex analysis.</div>
+<div>&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8211;</div>
+<div></div>
+<div>
+<div>
+<div>In <a title="Mathematics" href="https://en.wikipedia.org/wiki/Mathematics">mathematics</a>, the <b>general linear group</b> of degree <i>n</i> is the set of <i>n</i>×<i>n</i> <a title="Invertible matrix" href="https://en.wikipedia.org/wiki/Invertible_matrix">invertible matrices</a>, together with the operation of ordinary <a title="Matrix multiplication" href="https://en.wikipedia.org/wiki/Matrix_multiplication">matrix multiplication</a>. This forms a <a title="Group (mathematics)" href="https://en.wikipedia.org/wiki/Group_(mathematics)">group</a>, because the product of two invertible matrices is again invertible, and the inverse of an invertible matrix is invertible. The group is so named because the columns of an invertible matrix are <a title="Linearly independent" href="https://en.wikipedia.org/wiki/Linearly_independent">linearly independent</a>, hence the vectors/points they define are in <a title="General linear position" href="https://en.wikipedia.org/wiki/General_linear_position">general linear position</a>, and matrices in the general linear group take points in general linear position to points in general linear position.</div>
+<div></div>
+</div>
+</div>
+<div>
+<div>
+<div>To be more precise, it is necessary to specify what kind of objects may appear in the entries of the matrix. For example, the general linear group over <b>R</b> (the set of <a title="Real numbers" href="https://en.wikipedia.org/wiki/Real_numbers">real numbers</a>) is the group of <i>n</i>×<i>n</i> invertible matrices of real numbers, and is denoted by GL<sub><i>n</i></sub>(<b>R</b>) or GL(<i>n</i>, <b>R</b>).</div>
+</div>
+</div>
+<div>&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;-</div>
+<div>The <b><a href="https://en.wikipedia.org/wiki/General_linear_group#Special_linear_group">special linear group</a></b>, written SL(<i>n</i>, <i>F</i>) or SL<sub><i>n</i></sub>(<i>F</i>), is the <a title="Subgroup" href="https://en.wikipedia.org/wiki/Subgroup">subgroup</a> of GL(<i>n</i>, <i>F</i>) consisting of matrices with a <a title="Determinant" href="https://en.wikipedia.org/wiki/Determinant">determinant</a> of 1, with the group operations of ordinary <a title="Matrix multiplication" href="https://en.wikipedia.org/wiki/Matrix_multiplication">matrix multiplication</a> and <a title="Matrix inversion" href="https://en.wikipedia.org/wiki/Matrix_inversion">matrix inversion</a>. Matrices of this type form a group since the determinant of the product of two matrices is the product of the determinants of each matrix. The special linear group SL(<i>n</i>, <b>R</b>) can be characterized as the group of <i><a title="Volume" href="https://en.wikipedia.org/wiki/Volume">volume</a> and <a title="Orientation (mathematics)" href="https://en.wikipedia.org/wiki/Orientation_(mathematics)">orientation</a> preserving</i> linear transformations of <b>R</b><sup><i>n</i></sup>; this corresponds to the interpretation of the determinant as measuring change in volume and orientation.</div>
+<div>&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8211;</div>
+<div>the <a title="Special linear group" href="https://en.wikipedia.org/wiki/Special_linear_group">special linear group</a> <b>SL(2,R)</b> or <b>SL<sub>2</sub>(R)</b> is the <a title="Group (mathematics)" href="https://en.wikipedia.org/wiki/Group_(mathematics)">group</a> of <a title="2 × 2 real matrices" href="https://en.wikipedia.org/wiki/2_%C3%97_2_real_matrices">2 × 2 real matrices</a> with <a title="Determinant" href="https://en.wikipedia.org/wiki/Determinant">determinant</a> one. SL(2,<b>R</b>) acts on the <a title="Complex upper half-plane" href="https://en.wikipedia.org/wiki/Complex_upper_half-plane">complex upper half-plane</a> by fractional linear transformations</div>
+<div>&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8211;</div>
+<div>There is an action of <b>SL(2,R)</b> on C, which takes R U ∞ to itself and stabilizes the upper and lower half-planes. Intuition: It takes R to itself because the entries are real.  R U ∞ is the boundary of the upper half-plane. The transformation is orientation preserving; as you progress along the real line in the positive direction, the upper half-plane is on your left. This relationship is preserved by any Möbius transformation. So we require that the real line is not only mapped to itself, but it is mapped to itself in the same direction.</div>
+<div>&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;</div>
+<div>PGL(2,R) takes the real line to itself.</div>
+<div>PSL(2,R) takes the upper-half plane to itself.</div>
+<div>[4]</div>
+<div>
+<div>&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;</div>
+</div>
+<div>
+<div></div>
+<div>
+<div>The Möbius transformations are the <a title="Projective transformation" href="https://en.wikipedia.org/wiki/Projective_transformation">projective transformations</a> of the <a title="Complex projective line" href="https://en.wikipedia.org/wiki/Complex_projective_line">complex projective line</a>. They form a <a title="Group (mathematics)" href="https://en.wikipedia.org/wiki/Group_(mathematics)">group</a> called the <b>Möbius group</b>, which is the <a title="Projective linear group" href="https://en.wikipedia.org/wiki/Projective_linear_group">projective linear group</a> PGL(2,<b>C</b>).</div>
+</div>
+</div>
+<div></div>
+<div>The Möbius group <b>PGL(2,C)</b> consists of 2&#215;2 matrices with non-zero determinant: Möbius transformations are defined on the <a title="Riemann sphere" href="https://en.wikipedia.org/wiki/Riemann_sphere">extended complex plane,</a> <strong>C*</strong>. <a title="Stereographic projection" href="https://en.wikipedia.org/wiki/Stereographic_projection">Stereographic projection</a> identifies <strong>C*</strong> with a sphere, which is then called the <a title="Riemann sphere" href="https://en.wikipedia.org/wiki/Riemann_sphere">Riemann sphere</a>; alternatively, <strong>C*</strong>  can be thought of as the complex <a title="Projective line" href="https://en.wikipedia.org/wiki/Projective_line">projective line</a> <strong>CP1</strong>. The Möbius transformations are exactly the <a title="Bijective" href="https://en.wikipedia.org/wiki/Bijective">bijective</a> <a title="Conformal map" href="https://en.wikipedia.org/wiki/Conformal_map">conformal</a> maps from the Riemann sphere to itself, i.e., the <a title="Automorphism group" href="https://en.wikipedia.org/wiki/Automorphism_group">automorphisms</a> of the Riemann sphere as a <a title="Complex manifold" href="https://en.wikipedia.org/wiki/Complex_manifold">complex manifold</a>; alternatively, they are the automorphisms of <strong>CP1</strong> as an algebraic variety. Therefore, the set of all Möbius transformations forms a <a title="Group (mathematics)" href="https://en.wikipedia.org/wiki/Group_(mathematics)">group</a> under <a title="Function composition" href="https://en.wikipedia.org/wiki/Function_composition">composition</a>. This group is called the Möbius group, and is sometimes denoted, <strong>Aut(C*)</strong>.</div>
+<div></div>
+<div>The Möbius group is <a title="Group isomorphism" href="https://en.wikipedia.org/wiki/Group_isomorphism">isomorphic</a> to the group of orientation-preserving <a title="Isometry" href="https://en.wikipedia.org/wiki/Isometry">isometries</a> of <a title="Hyperbolic space" href="https://en.wikipedia.org/wiki/Hyperbolic_space">hyperbolic 3-space</a> and therefore plays an important role when studying <a title="Hyperbolic 3-manifold" href="https://en.wikipedia.org/wiki/Hyperbolic_3-manifold">hyperbolic 3-manifolds</a>.</div>
+<div>&#8212;&#8212;&#8212;&#8212;</div>
+<div>From [2]:</div>
+<div>We already know that S² is the same object as CP¹. The result should be understood as follows. Consider CP¹ made out of equivalence classes [z0:z1]=c[z0:z1]. This means that each equivalent class is characterized by a nonzero complex number <em>c</em> which we shall consider as a point (kind of a coordinate) in CP¹. Thus there is a one-to-one correspondence between points in CP¹ and lines in C².</div>
+<div></div>
+<div>Thurston [1] continues:</div>
+<div>The complex plane <strong>C </strong>embeds naturally in the complex projective line <strong>CP¹</strong>, the set of complex lines (one-dimensional subspaces) of <strong>CP¹</strong>. The embedding maps a point z in <strong>C</strong> to the complex line spanned by (z, 1), seen as a point in <strong>CP¹</strong>; we call <em>z</em> the <em>inhomogeneous coordinate</em> for this point, while any pair <em>(tz, t) in </em><strong>C²</strong>, with t in <strong>C*=C</strong>\{0}, is called a set of <em>homogeneous coordinates</em> for it.</div>
+<div></div>
+<div>Two non-singular linear maps of <strong>C²</strong> give the same projective transformation of <strong>CP¹ </strong>if and only if one is a scalar multiple of the other. Thus, identifying together scalar multiples in the linear group GL(2,<strong>C</strong>) give the group of projective transformations of <strong>CP¹</strong> which we naturally denote by PGL(2,<strong>C</strong>) = GL(2,<strong>C</strong>)/<strong>C*</strong>. This group is also known as PSL(2,<strong>C</strong>), because it can be obtained by identifying together scalar multiples in the special linear group SL(2,<strong>C</strong>), consisting of linear transformations of <strong>C²</strong> with unit determinant.</div>
+<div></div>
+<div>A Möbius transformation of S^n-1 can be extended to a unique isometry of H^n. Since PGL(2,C) actor on S² by  Möbius transformations, this action can be extended to all of H³&#8230; The group of orientation-preserving isometries of H³ is PGL(2,C), identified via the action on S²=<strong>CP¹</strong>.</div>
+<div></div>
+<div>&#8212;&#8212;&#8212;&#8212;</div>
+<div>
+<div><b>Kleinian Group</b> &#8211; is a <a title="Discrete subgroup" href="https://en.wikipedia.org/wiki/Discrete_subgroup">discrete subgroup</a> of <a title="PSL(2,C)" href="https://en.wikipedia.org/wiki/PSL(2,C)">PSL(2, <b>C</b>)</a>. (Note that PSL(2,C) <span id="MathJax-Element-10-Frame" class="MathJax" tabindex="0" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;P&lt;/mi&gt;&lt;mi&gt;S&lt;/mi&gt;&lt;msub&gt;&lt;mi&gt;L&lt;/mi&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;/msub&gt;&lt;mo stretchy=&quot;false&quot;&gt;(&lt;/mo&gt;&lt;mi&gt;C&lt;/mi&gt;&lt;mo stretchy=&quot;false&quot;&gt;)&lt;/mo&gt;&lt;mo&gt;&amp;#x2245;&lt;/mo&gt;&lt;mi&gt;P&lt;/mi&gt;&lt;mi&gt;G&lt;/mi&gt;&lt;msub&gt;&lt;mi&gt;L&lt;/mi&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;/msub&gt;&lt;mo stretchy=&quot;false&quot;&gt;(&lt;/mo&gt;&lt;mi&gt;C&lt;/mi&gt;&lt;mo stretchy=&quot;false&quot;&gt;)&lt;/mo&gt;&lt;/math&gt;"><span id="MathJax-Span-81" class="math"><span id="MathJax-Span-82" class="mrow"><span id="MathJax-Span-91" class="mo">≅ </span></span></span></span>PGL(2,C) but PSL(2,R) is not <span id="MathJax-Element-10-Frame" class="MathJax" tabindex="0" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;P&lt;/mi&gt;&lt;mi&gt;S&lt;/mi&gt;&lt;msub&gt;&lt;mi&gt;L&lt;/mi&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;/msub&gt;&lt;mo stretchy=&quot;false&quot;&gt;(&lt;/mo&gt;&lt;mi&gt;C&lt;/mi&gt;&lt;mo stretchy=&quot;false&quot;&gt;)&lt;/mo&gt;&lt;mo&gt;&amp;#x2245;&lt;/mo&gt;&lt;mi&gt;P&lt;/mi&gt;&lt;mi&gt;G&lt;/mi&gt;&lt;msub&gt;&lt;mi&gt;L&lt;/mi&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;/msub&gt;&lt;mo stretchy=&quot;false&quot;&gt;(&lt;/mo&gt;&lt;mi&gt;C&lt;/mi&gt;&lt;mo stretchy=&quot;false&quot;&gt;)&lt;/mo&gt;&lt;/math&gt;"><span id="MathJax-Span-81" class="math"><span id="MathJax-Span-82" class="mrow"><span id="MathJax-Span-91" class="mo">≅ to PGL(2,R). I&#8217;m not sure why. Thurston mentions it above and there are articles in math overflow about it). </span></span></span></span>Discreteness implies points in <i>B</i><sup>3</sup> have finite <a title="Stabilizer (group theory)" href="https://en.wikipedia.org/wiki/Stabilizer_(group_theory)">stabilizers</a>, and discrete <a title="Orbit (group theory)" href="https://en.wikipedia.org/wiki/Orbit_(group_theory)">orbits</a> under the group <i>G</i>. But the orbit <i>Gp</i> of a point <i>p</i> will typically <a title="Accumulation point" href="https://en.wikipedia.org/wiki/Accumulation_point">accumulate</a> on the boundary of the <a title="Closed ball" href="https://en.wikipedia.org/wiki/Closed_ball">closed bal</a><a href="https://en.wikipedia.org/wiki/Closed_ball">l</a><strong>B3</strong>.</div>
+<div>Let <i>T</i> be a <a title="Frequency" href="https://en.wikipedia.org/wiki/Frequency">periodic</a><a title="Tessellation" href="https://en.wikipedia.org/wiki/Tessellation">tessellation</a> of hyperbolic 3-space. The group of symmetries of the tessellation is a Kleinian group</div>
+<div>&#8212;&#8212;&#8212;&#8212;-</div>
+<div><b>Fuchsian Group</b> &#8211; Any <a title="Fuchsian group" href="https://en.wikipedia.org/wiki/Fuchsian_group">Fuchsian group</a> (a discrete subgroup of SL(2, <b>R</b>)) is a Kleinian group, and conversely any Kleinian group preserving the real line (in its action on the Riemann sphere) is a Fuchsian group. More generally, any Kleinian group preserving a circle or straight line in the Riemann sphere is conjugate to a Fuchsian group. &#8220;Indra&#8217;s Pearls&#8221; says that any group which can be conjugated to a group meeting the above requirements is also a Fuschian group, which seems reasonable. In other words, the traces of Fuscian matrices must be real; traces don&#8217;t change under conjugation.</div>
+</div>
+<div></div>
+<div>A <strong>quasi-Fuchsian group</strong> is a Kleinian group whose <a title="Kleinian group" href="https://en.wikipedia.org/wiki/Kleinian_group">limit set</a> is contained in an invariant <a class="mw-redirect" title="Jordan curve" href="https://en.wikipedia.org/wiki/Jordan_curve">Jordan curve</a>. In other words the limit set divides the ordinary set into an inside and an outside. The limit set can be crinkly. The special case when the Jordan curve is a circle or line is called a <a title="Fuchsian group" href="https://en.wikipedia.org/wiki/Fuchsian_group">Fuchsian group</a>.</div>
+<div></div>
+<div>&#8212;&#8212;&#8212;&#8212;-</div>
+<div>The <b>modular group</b> is the <a title="Projective linear group" href="https://en.wikipedia.org/wiki/Projective_linear_group">projective special linear group</a> <i>PSL</i>(2,<b>Z</b>) of 2 x 2 matrices with integer coefficients and unit determinant. It acts on the upper half of the complex plane because Z is real. Some authors <i>define</i> the modular group to be PSL(2, <b>Z</b>), and still others define the modular group to be the larger group SL(2, <b>Z</b>).</div>
+<div>It is a subgroup of PSL(2,R) and therefore the modular group is a subgroup of the group of orientation-preserving isometries of <b>H </b>(the upper half plane).</div>
+<div>Note that any member of the modular group maps the <a title="Projectively extended real line" href="https://en.wikipedia.org/wiki/Projectively_extended_real_line">projectively extended real line</a> one-to-one to itself, and furthermore bijectively maps the projectively extended rational line (the rationals with infinity) to itself, the <a title="Irrational number" href="https://en.wikipedia.org/wiki/Irrational_number">irrationals</a> to the irrationals, the <a title="Transcendental number" href="https://en.wikipedia.org/wiki/Transcendental_number">transcendental numbers</a> to the transcendental numbers, the non-real numbers to the non-real numbers, the upper half-plane to the upper half-plane, et cetera.</div>
+<div></div>
+<div>The modular group can be shown to be generated by the two transformations:</div>
+<div>S: z -&gt; -1/z</div>
+<div>T: z -&gt; z + 1</div>
+<div>so that every element in the modular group can be represented (in a non-unique way) by the composition of powers of <i>S</i> and <i>T</i>. Geometrically, <i>S</i> represents inversion in the unit circle followed by reflection with respect to the imaginary axis, while <i>T</i> represents a unit translation to the right.</div>
+<div></div>
+<div>
+<p>The matrices [0,1,-1,0] and [1,1,1,0] generate SL(2Z). Both matrices have determinant = 1. That means they are volume and orientation preserving.</p>
+<p>The analogous Möbius transforms:</p>
+<div>    S: z -&gt; -1/z</div>
+<div>    T: z -&gt; z + 1</div>
+<div>generate the modular group. They are not volume preserving in the upper half plane but they are in the hyperbolic plane: all tiles are the same size in the hyperbolic plane.</div>
+</div>
+<div>&#8212;&#8212;&#8212;&#8212;&#8212;</div>
+<div>
+<p>Γ(<i>N</i>) is a <a title="Normal subgroup" href="https://en.wikipedia.org/wiki/Normal_subgroup">normal subgroup</a> of the modular group Γ. The group Γ(<i>N</i>) is given as the set of all modular transformations</p>
+<dl>
+<dd><span class="mwe-math-element"><span class="mwe-math-mathml-inline mwe-math-mathml-a11y"> </span><img decoding="async" class="svg mwe-math-fallback-image-inline" src="https://wikimedia.org/api/rest_v1/media/math/render/svg/ff0c680f3b080102ea05e16e73b315b6a692c621" alt="z\mapsto\frac{az+b}{cz+d}" /></span></dd>
+</dl>
+<p>for which <i>a</i> ≡ <i>d</i> ≡ ±1 (mod <i>N</i>) and <i>b</i> ≡ <i>c</i> ≡ 0 (mod <i>N</i>).</p>
+<p>The principal congruence subgroup of level 2, Γ(2), is also called the <b>modular group Λ</b>. Since PSL(2, <b>Z</b>/2<b>Z</b>) is isomorphic to <a title="Symmetric group" href="https://en.wikipedia.org/wiki/Symmetric_group"><i>S</i><sub>3</sub></a>, Λ is a subgroup of <a title="Index of a subgroup" href="https://en.wikipedia.org/wiki/Index_of_a_subgroup">index</a> 6. The group Λ consists of all modular transformations for which <i>a</i> and <i>d</i> are odd and <i>b</i> and <i>c</i> are even.</p>
+<p>The subgroups<span class="mwe-math-element"><span class="mwe-math-mathml-inline mwe-math-mathml-a11y"> </span><img decoding="async" class="svg mwe-math-fallback-image-inline" src="https://wikimedia.org/api/rest_v1/media/math/render/svg/4c0a5574f4d6c8216317c083b561708624da0d73" alt="\Gamma _{0}(n)" /></span>, sometimes called the <i>Hecke congruence subgroup</i> of level <span class="mwe-math-element"><span class="mwe-math-mathml-inline mwe-math-mathml-a11y"> n</span></span>, is defined as the preimage by <span class="mwe-math-element"><span class="mwe-math-mathml-inline mwe-math-mathml-a11y"> </span><img decoding="async" class="svg mwe-math-fallback-image-inline" src="https://wikimedia.org/api/rest_v1/media/math/render/svg/3e3144ebd68015a67d92ab797a63d232c65ead26" alt="\pi _{n}" /></span> of the group of upper triangular matrices. That is,</p>
+<dl>
+<dd><span class="mwe-math-element"><span class="mwe-math-mathml-inline mwe-math-mathml-a11y"> </span><img decoding="async" class="svg mwe-math-fallback-image-inline" src="https://wikimedia.org/api/rest_v1/media/math/render/svg/0003da7b79f68ef2a47af9ad31b2581b7bb1ed42" alt="{\displaystyle \Gamma _{0}(n)=\left\{{\begin{pmatrix}a&amp;b\\c&amp;d\end{pmatrix}}\in \Gamma :c\equiv 0{\pmod {n}}\right\}}" /></span>.</dd>
+</dl>
+</div>
+<p>The subgroups<span class="mwe-math-element"><span class="mwe-math-mathml-inline mwe-math-mathml-a11y"> </span><img decoding="async" class="svg mwe-math-fallback-image-inline" src="https://wikimedia.org/api/rest_v1/media/math/render/svg/f153cfdc29598ffc3f90fedb6b301bafa0b4f36d" alt="{\displaystyle \Gamma _{1}(n)}" /></span> are the preimage of the subgroup of unipotent matrices:</p>
+<dl>
+<dd><span class="mwe-math-element"><span class="mwe-math-mathml-inline mwe-math-mathml-a11y"> </span><img decoding="async" class="svg mwe-math-fallback-image-inline" src="https://wikimedia.org/api/rest_v1/media/math/render/svg/5ef86ed77e1a047d98ed83be583e2a8228db08c0" alt="{\displaystyle \Gamma _{1}(n)=\left\{{\begin{pmatrix}a&amp;b\\c&amp;d\end{pmatrix}}\in \Gamma :a,d\equiv 1{\pmod {n}},c\equiv 0{\pmod {n}}\right\}}" /></span></dd>
+</dl>
+<p>The <i>theta subgroup</i> <span class="mwe-math-element"><span class="mwe-math-mathml-inline mwe-math-mathml-a11y"> </span><img decoding="async" class="svg mwe-math-fallback-image-inline" src="https://wikimedia.org/api/rest_v1/media/math/render/svg/0ac0a4a98a414e3480335f9ba652d12571ec6733" alt="\Lambda " /></span> is the congruence subgroup of <span class="mwe-math-element"><span class="mwe-math-mathml-inline mwe-math-mathml-a11y"> </span><img decoding="async" class="svg mwe-math-fallback-image-inline" src="https://wikimedia.org/api/rest_v1/media/math/render/svg/4cfde86a3f7ec967af9955d0988592f0693d2b19" alt="\Gamma " /></span> defined as the preimage of the cyclic group of order two generated by <span class="mwe-math-element"><img decoding="async" class="svg mwe-math-fallback-image-inline" src="https://wikimedia.org/api/rest_v1/media/math/render/svg/602361ca8db637fcfca4c2a2fd74efd7b9232624" alt="{\displaystyle {\bigl (}{}_{1}^{0}\,{}_{0}^{-1}{\bigr )}}" /></span> in <span class="mwe-math-element"><span class="mwe-math-mathml-inline mwe-math-mathml-a11y"> </span><img decoding="async" class="svg mwe-math-fallback-image-inline" src="https://wikimedia.org/api/rest_v1/media/math/render/svg/46623af136f3d3d280b8d288f889bbec5d7508e1" alt="{\displaystyle \mathrm {SL} _{2}(\mathbb {Z} /2\mathbb {Z} )}" /></span>. It is of index 3 and is explicitly described by:<sup id="cite_ref-2" class="reference"><a href="https://en.wikipedia.org/wiki/Congruence_subgroup#cite_note-2">[2]</a></sup></p>
+<dl>
+<dd><span class="mwe-math-element"><img decoding="async" class="svg mwe-math-fallback-image-inline" src="https://wikimedia.org/api/rest_v1/media/math/render/svg/723453484bde94710bdf5bc384f8d72caca70efc" alt="{\displaystyle \Lambda =\left\{{\begin{pmatrix}a&amp;b\\c&amp;d\end{pmatrix}}\in \Gamma :ac\equiv 0{\pmod {n}},bd\equiv 0{\pmod {n}}\right\}}" /></span>.</dd>
+</dl>
+<p>It is also called the Modular Group Lambda. It is the set of transforms where a and d are odd and b and c are even. Same as above.</p>
+<hr />
+<p>The group of 2 by 2 matrices with determinant 1, SL<sub>2</sub>(Z) acts on the upper half complex plane:</p>
+<p><center><img decoding="async" src="http://wstein.org/Tables/fundomain/fundomain/action.gif" alt="[a,b;c,d]z -&gt; (az+b)/(cz+d)" width="144" height="45" align="center" /></center>The triangles drawn by this program are Fundamental domains for SL<sub>2</sub>(Z). These triangles are used to construct the Fundamental domains for other subgroups of SL<sub>2</sub>(Z). For this nomenclature:</p>
+<p><center><img loading="lazy" decoding="async" src="http://wstein.org/Tables/fundomain/fundomain/gl0.gif" alt="Gamma_0(N)" width="43" height="28" />, <img decoding="async" src="http://wstein.org/Tables/fundomain/fundomain/gl1.gif" alt="Gamma_1(N)" width="43" height="28" />, <img loading="lazy" decoding="async" src="http://wstein.org/Tables/fundomain/fundomain/gN.gif" alt="Gamma(N)" width="36" height="28" />, <img loading="lazy" decoding="async" src="http://wstein.org/Tables/fundomain/fundomain/gu1.gif" alt="Gamma^1(N)" width="43" height="28" /> and <img loading="lazy" decoding="async" src="http://wstein.org/Tables/fundomain/fundomain/gu0.gif" alt="Gamma^0(N)" width="43" height="28" />,</center>where N is a positive integer. These subgroups consist of matrices in SL<sub>2</sub>(Z) of the following forms respectively:</p>
+<p><center><img loading="lazy" decoding="async" src="http://wstein.org/Tables/fundomain/fundomain/Gl0.gif" alt="[a,b;Nc,d]" width="75" height="45" />, <img decoding="async" src="http://wstein.org/Tables/fundomain/fundomain/Gl1.gif" width="145" height="45 alt = " />, <img loading="lazy" decoding="async" src="http://wstein.org/Tables/fundomain/fundomain/GN.gif" alt="[Na+1,Nb;Nc,Nd+1]" width="145" height="45" />, <img loading="lazy" decoding="async" src="http://wstein.org/Tables/fundomain/fundomain/Gu1.gif" alt="[Na+1,Nb;Nc+1,d]" width="145" height="45" /> and <img loading="lazy" decoding="async" src="http://wstein.org/Tables/fundomain/fundomain/Gu0.gif" alt="[a,Nb;c,d]" width="75" height="45" />.</center>Here a,b,c,d are integers.</p>
+<p>from [3]</p>
+<p>&nbsp;</p>
+<hr />
+<div><strong>SU(2)</strong> is the group of unit quaternions. They can be used to define regular polyhedra. A M ̈obius transformation is an isometry of the Riemann sphere (for the chordal metric) if, and only if, it is represented by a 2&#215;2 matrix that is a member of <strong>SU(2)</strong>. This chordal metric is nothing more than the Euclidean metric between the two points that <span id="MathJax-Element-13-Frame" class="MathJax" tabindex="0" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;msub&gt;&lt;mi&gt;z&lt;/mi&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;/msub&gt;&lt;/math&gt;"><span id="MathJax-Span-164" class="math"><span id="MathJax-Span-165" class="mrow"><span id="MathJax-Span-166" class="msubsup"><span id="MathJax-Span-167" class="mi">z</span><span id="MathJax-Span-168" class="mn">1</span></span></span></span></span> and <span id="MathJax-Element-14-Frame" class="MathJax" tabindex="0" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;msub&gt;&lt;mi&gt;z&lt;/mi&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;/msub&gt;&lt;/math&gt;"><span id="MathJax-Span-169" class="math"><span id="MathJax-Span-170" class="mrow"><span id="MathJax-Span-171" class="msubsup"><span id="MathJax-Span-172" class="mi">z</span><span id="MathJax-Span-173" class="mn">2</span></span></span></span></span> are mapped to on the unit sphere by stereographic projection.</div>
+<div>&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8211;</div>
+<div>[1] Three-Dimensional Geometry and Topology. William P. Thurston. Pages 98-99.</div>
+<div>[2] Applications of Contact Geometry and Topology in Physics<br />
+By Arkady L Kholodenko, page 360.</div>
+<div>[3] http://wstein.org/Tables/fundomain/index2.html</div>
+<div>[4] Complex Functions. Gareth Jones &amp; David Singerman. Page 31.</div>
+					
+                <p>
+                    <a href="15-MobiusTransforms.html"><img src="13-ComplexSurfaces_files/previouspost.png" alt="Previous Post"> Möbius Transformations on Sph...</a>
+                    <span style="float:right;">
+                        <a href="17-Tesselations.html">Tessellation of the Hyperbolic...<img src="13-ComplexSurfaces_files/nextpost.png" alt="Next Post"></a>
+                    </span>
+                </p>
+						
+
+
+                </p>
+                <p><a href="../blog.html">Back to Home</a></p>
+                <hr>
+            </div> <!-- Closed entry div -->
+    <div id="footer">
+        <div style="float: right; margin-right: 1em; ">
+            <span style="display:block;height:30px;">Copyright (c) <nobr><a href="http://rwoodley.org/" style="color:#aaa;" target="_blank">Robert Woodley</a> 2014-2025</nobr></span>
+        </div>
+    </div>
+        </div> <!-- Closed row div -->
+    </div> <!-- Closed container div -->
+
+</body>
+</html>

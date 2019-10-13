@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ford Circles and Farey Graphs</title>
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+</head>
+<body>
+    <div id="header">
+        <div style="float: left;">
+            <h1 class="sitename"><a href="../blog.html">Ford Circles and Farey Graphs</a></h1>
+        </div>
+
+        <div id="nav">
+            2017/03/18
+        </div>
+
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="entry">
+
+    <div class="post-content">
+
+        <p>Here is an image of a tessellation or tiling of the upper half-plane. Under some group of symmetries, an initial triangle (for instance the one in orange) covers the plane without overlaps. (The initial triangle is not ideal because only one of its angles is 0). The group of symmetries used are those of the modular group. See my previous post where I go into this in greater detail.</p>
+        <p><img src="18-FordCircles_files/tess1.png" alt="Tessellation of the upper half plane using the symmetries of the Modular Group.">
+Tessellation of the upper half plane using the symmetries of the Modular Group.</p>
+        <p>Note that each triangle has a vertex on the rim of the circle. The rim of the circle is the real projective number line.</p>
+        <p>The orange initial triangle, aka the fundamental domain, is touching the real number line at the point of infinity. The green triangle right below the orange triangle touches the real number line at the point 0. The green triangle = S(orange triangle), where S -> -1/z. Every other vertex touching the rim of the disc can be obtained by applying some combination of S and T. (T->z+1).</p>
+
+        <h2>Ford Circles</h2>
+        <p>Lets start with 2 circles, one with a radius=1 touching at 0. Another is a line, Im(z) = 1 (a circle with an infinite radius that is). These are the 2 large circles in the picture below. If we then apply S and T repeatedly we get the <a href="https://en.wikipedia.org/wiki/Ford_circle">Ford circles</a>.</p>
+        <p>The set of points where the circles touch the real number line is the set of rational numbers, Q. This is the same set of points where the vertexes of the tessellated initial triangles touch the rim.</p>
+        <p>From [4], I learned the following interesting facts:</p>
+        <ol>
+            <li>The circle touching the real axis at the reduced fraction a/c has radius 1/2c². This explains why the circles for reduced fraction a/c and a’/c have the same radius.</li>
+            <li>The circles touching z = a/c and z = b/d > a/c are tangential to each other because ad − bc = 1. Such circles are images of the 2 initial circles touching z = 0 and z = ∞ under SL(2, Z) (determinant = 1).</li>
+            <li>The circle between these tangential circles touches at (a+b)/(c+d). Because the latter circle is the image of the circle between the circles touching z = 0 and z = ∞, namely the circle touching z = 1, under <img src="18-FordCircles_files/formula_5e1c54bc9fa6c6e6c9a0bf18de3e62b22fc8e08d.svg" alt="f(z)={az+b}/{cz+d}">.</li>
+        </ol>
+        <p>The formula (a+b)/(c+d) is the formula for calculating a <a href="https://en.wikipedia.org/wiki/Mediant_(mathematics)">mediant</a> between 2 <a href="https://en.wikipedia.org/wiki/Farey_sequence#Farey_neighbours">Farey neighbors</a>, a/b and c/d.</p>
+        <p><img src="18-FordCircles_files/tess2.png" alt="Ford Circles">
+        Ford Circles</p>
+        <p>“The Farey graph is the PSL(2,Z) images of the imaginary axis, and so contains all of Q* as its points at infinity. It is not hard to see that p/q and r/s are connected by an edge iff ps-qr = +/-1, so it is in some sense a geometric recording of the matrix group.” [1]</p>
+        <p>Here the images of the imaginary axis are highlighted and the Farey graph is evident:</p>
+        <p><img src="18-FordCircles_files/tess3.png" alt="Farey Graph">
+        Farey Graph</p>
+
+        <p>[1] http://mduchin.math.tufts.edu/notes/hyp-groups-course.pdf</p>
+        <p>[2] “Indra’s Pearls”, pages 210-213.</p>
+        <p>[3] http://homepages.warwick.ac.uk/~masbb/HypGeomandCntdFractions-2.pdf</p>
+        <p>[4] http://www.maths.ed.ac.uk/~aar/Whittaker2012A</p>
+    </div>
+
+                <p>
+                    <a href="17-Tesselations.html"><img src="13-ComplexSurfaces_files/previouspost.png" > Tesselations of the Reimann Sphere...</a>
+                    <span style="float:right;">
+                        <a href="19-CongruenceGroups.html">Congruence Group Γ(2)<img src="13-ComplexSurfaces_files/nextpost.png" alt="Next Post"></a>
+                    </span>
+                </p>
+						
+
+
+                </p>
+                <p><a href="../blog.html">Back to Home</a></p>
+                <hr>
+    <div id="footer">
+        <div style="float: right; margin-right: 1em; ">
+            <span style="display:block;height:30px;">Copyright (c) <nobr><a href="http://rwoodley.org/" style="color:#aaa;" target="_blank">Robert Woodley</a> 2014-2025</nobr></span>
+        </div>
+    </div>
+    </div>
+    </div>
+    </div>
+</body>
+</html>

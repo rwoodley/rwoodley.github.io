@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title        <p>But that code uses three.js objects so is beyond what you can do in formula toy.</p>
+        <p>A trefoil is just one example of a torus knot. It is a (2,3) torus knot which means it winds 3 times around a circle in the interior of the torus, and 2 times around the torus' axis of rotational symmetry. There is a whole family of torus knots (p,q). p and q correspond to pp and qq in the parametric formula above.</p>orus Knots</title>
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+    <style>
+        li { padding-bottom: .5em; }
+        pre { white-space: pre-wrap; word-wrap: break-word; background-color: #000000; color: #00FF00; border: 1px solid #ccc; padding: 10px; margin: 10px 0; display: block; font-family: monospace; }
+    </style>
+</head>
+<body>
+    <!-- Banner.-->
+    <div id="header">
+        <div style="float: left;">
+            <h1 class="sitename"><a href="../blog.html">Torus Knots</a></h1>
+        </div>
+        <div id="nav">
+            2016/05/30
+        </div>
+    </div>
+    <!-- End of Banner.-->
+    <div class="container">
+        <div class="row">
+            <div class="entry">
+				<p><a href="07-FormulaToy.html" target="_blank" rel="noopener">Formula Toy</a> is a simple and free WebGL app I wrote that allows you to enter in 3-d formulas and see the resulting surface. Sort of like Desmos, but for 3D.</p>
+<p>When I first wrote it you could express your formulas in 3 different coordinate systems: cartesian, spherical (polar), and cylindrical. I recently add toroidal which is not very useful except for drawing toruses:</p>
+<pre style="color: #00ff00;">     radius=.5+sin(phi)/(15)*3
+</pre>
+<p><a href="http://formulatoy.net/?formula=radius%3D.5%2Bsin%28phi%29/%2815%29*3&amp;system=toroidal&amp;color=0xffae00&amp;shininess=30&amp;opacity=1&amp;material=Phong&amp;PNGUKey=4578&amp;1460688651"><img decoding="async" class="alignnone size-full wp-image-1135" src="12-TorusKnots_files/torus.jpg" alt="torus" width="300px" srcset="12-TorusKnots_files/torus.jpg 564w, 12-TorusKnots_files/torus-300x163.jpg 300w" sizes="(max-width: 564px) 100vw, 564px" /></a></p>
+<p>AND I added parametric surfaces. If you choose this option, the system is expecting formulas for X, Y, and Z. You are given U and V. For instance a helix could be expressed as:</p>
+<pre style="color: #00ff00;">u=u*(2*pi);
+v=v*(6*pi);
+x=u*cos(v);
+y=u*sin(v);
+z=v;
+</pre>
+<p><a href="http://formulatoy.net/?formula=u%3Du*%282*pi%29;%0Av%3Dv*%286*pi%29;%0Ax%3Du*cos%28v%29;%0Ay%3Du*sin%28v%29;%0Az%3Dv;%0A&amp;system=parametric&amp;color=0xff0000&amp;shininess=30&amp;opacity=1&amp;material=Phong&amp;PNGUKey=1237&amp;1464584747"><img decoding="async" class="alignnone size-full wp-image-1136" src="12-TorusKnots_files/helix.jpg" alt="helix" width="300px" srcset="12-TorusKnots_files/helix.jpg 153w, 12-TorusKnots_files/helix-150x150.jpg 150w" sizes="(max-width: 153px) 100vw, 153px" /></a></p>
+<p>Parametric equations that are functions of a single variable (t) instead of 2 variables (u,v), don&#8217;t display because they have zero thickness. For instance the parametric formula for a <a href="https://en.wikipedia.org/wiki/Trefoil_knot#Descriptions">trefoil knot</a> is a function of 1 variable. To make this visible in formula toy, you need a tube geometry so that the knot doesn&#8217;t have zero thickness/volume. Three.js offers a tube geometry but you can also achieve the same effect using the parametric geometry, but with a little extra math. We can start with a torus, and make that our &#8216;tube&#8217; that will be bent into a trefoil. Here is the parametric formula for a torus:</p>
+<pre style="color: #00ff00;">u=u*(2*pi);
+v=v*(2*pi);
+x=(4+cos(v))*cos(u);
+y=(4+cos(v))*sin(u);
+z=sin(v);
+</pre>
+<p><a href="http://formulatoy.net/?formula=u%3Du*%282*pi%29;%0Av%3Dv*%282*pi%29;%0Ax%3D%284%2Bcos%28v%29%29*cos%28u%29;%0Ay%3D%284%2Bcos%28v%29%29*sin%28u%29;%0Az%3Dsin%28v%29;%0A&amp;system=parametric&amp;color=0xff0000&amp;shininess=30&amp;opacity=1&amp;material=Phong&amp;PNGUKey=1244&amp;1464663990"><img decoding="async" class="alignnone size-full wp-image-1141" src="12-TorusKnots_files/torusp-1.jpg" alt="torusp" width="300px" /></a></p>
+<p>So to plot a trefoil:</p>
+<pre style="color: #00ff00;">// Setup
+u=u*(2*pi);
+v=v*(2*pi);
+phi=u;
+</pre>
+<pre style="color: #00ffff;">// Parametric formula for a trefoil
+pp=2;     // A trefoil is a (2,3) torus ring.
+qq=3;
+rr=cos(qq*phi)+2;
+// xx,yy,zz are the formula for the trefoil, a function of one variable (phi)
+xx=rr*cos(pp*phi);
+yy=rr*sin(pp*phi);
+zz=-3*sin(qq*phi);
+</pre>
+<pre style="color: #ffff00;">// Modified Torus formula to bend a torus into a trefoil shape:
+x=(4*xx+cos(v)*xx/rr);
+y=(4*yy+cos(v)*yy/rr);
+z=sin(v)+zz/rr;
+</pre>
+<p><a href="http://formulatoy.net/?formula=u%3Du*%282*pi%29;%0Av%3Dv*%282*pi%29;%0Aphi%3Du;%0App%3D2;%0Aqq%3D3;%0Arr%3Dcos%28qq*phi%29%2B2;%0Axx%3Drr*cos%28pp*phi%29;%0Ayy%3Drr*sin%28pp*phi%29;%0Azz%3D-3*sin%28qq*phi%29;%0Ax%3D%284*xx%2Bcos%28v%29*xx/rr%29;%0Ay%3D%284*yy%2Bcos%28v%29*yy/rr%29;%0Az%3Dsin%28v%29%2Bzz/rr;%0A&amp;system=parametric&amp;color=0xff0000&amp;shininess=30&amp;opacity=1&amp;material=Phong&amp;PNGUKey=3277&amp;1464663699"><img decoding="async" class="alignnone size-full wp-image-1139" src="12-TorusKnots_files/trefoil.jpg" alt="trefoil" width="300px" srcset="12-TorusKnots_files/trefoil.jpg 564w, 12-TorusKnots_files/trefoil-300x168.jpg 300w" sizes="(max-width: 564px) 100vw, 564px" /></a></p>
+<p>So that works, and is succinct, but you could also achieve the same thing in a more mathematically correct but longer way. The correct way is to take 2 normal vectors to the derivative of the trefoil formula with respect to phi. Pseudo-code would look something like this:</p>
+<pre>
+    var dv = df(pp, qq, phi); 
+    var north = new THREE.Vector3(0,0,1);
+    var v1 = cross(dv, north);
+    v1.normalize();
+    var v2 = cross(dv, v1);
+    v2.normalize();
+    x = xy + (cos(theta)*v1.x + sin(theta)*v2.x)*.2,
+    y = yy + (cos(theta)*v1.y + sin(theta)*v2.y)*.2,
+    z = zz + (cos(theta)*v1.z + sin(theta)*v2.z)*.2,
+</pre>
+<p>But that code uses three.js objects so is beyond what you can do in formula toy.</p>
+<p>A trefoil is just on example of a torus knot. It is a (2,3) torus knot when means it winds 3 times around a circle in the interior of the torus, and 2 times around the torus&#8217; axis of rotational symmetry. There is a whole family of torus knots (<i>p,q</i>). <i>p</i> and <i>q</i> correspond to <b>pp</b> and <b>qq</b> in the parametric formula above.</p>
+<p>For instance, here is a (<i>3,7</i>) knot:</p>
+<p><a href="http://formulatoy.net/?formula=u%3Du*(2*pi);%0Av%3Dv*(2*pi);%0Aphi%3Du;%0App%3D3;%0Aqq%3D7;%0Arr%3Dcos(qq*phi)%2B2;%0Axx%3Drr*cos(pp*phi);%0Ayy%3Drr*sin(pp*phi);%0Azz%3D-3*sin(qq*phi);%0Ax%3D(4*xx%2Bcos(v)*xx/rr);%0Ay%3D(4*yy%2Bcos(v)*yy/rr);%0Az%3Dsin(v)%2Bzz/rr;%0A&amp;system=parametric&amp;color=0x0e00ff&amp;shininess=30&amp;opacity=1&amp;material=Phong&amp;PNGUKey=9439&amp;1465703564"><img fetchpriority="high" decoding="async" class="alignnone size-full wp-image-1158" src="12-TorusKnots_files/37knot.jpg" alt="37knot" width="564" height="321" srcset="12-TorusKnots_files/37knot.jpg 564w, 12-TorusKnots_files/37knot-300x171.jpg 300w" sizes="(max-width: 564px) 100vw, 564px" /></a></p>
+        <p>Below is another example which shows a (5,6) torus knot winding around a torus. This was not done in Formula Toy since it draws 2 surfaces (the knot and the torus), and Formula Toy only draws one surface. (but it was all done with three.js).</p>
+        <img src="12-TorusKnots_files/56torus-1024x721.jpg" alt="56torus">
+
+        <p>
+            <a href="11-RotationsTransformationsGeometriesAndMeshes.html"><img src="12-TorusKnots_files/previouspost.png" alt="Previous Post"> Rotations, Transformations – Geometries and Meshes</a>
+            <span style="float:right;">
+                <a href="13-ComplexSurfaces.html">Complex Surfaces<img src="../media/nextpost.png" alt="Next Post"></a>
+            </span>
+        </p>
+
+        <p><a href="../blog.html">Back to Home</a></p>
+        
+        <hr>
+    <div id="footer">
+        <div style="float: right; margin-right: 1em; ">
+            <span style="display:block;height:30px;">Copyright (c) <nobr><a href="http://rwoodley.org/" style="color:#aaa;" target="_blank">Robert Woodley</a> 2014-2025</nobr></span>
+        </div>
+    </div>
+    </div>
+</body>
+</html>

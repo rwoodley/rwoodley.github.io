@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Complex Surfaces</title>
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+    <style>
+        li { padding-bottom: .5em; }
+        pre { white-space: pre-wrap; word-wrap: break-word; background-color: #000000; color: #00FF00; border: 1px solid #ccc; padding: 10px; margin: 10px 0; display: block; font-family: monospace; }
+        .wp-caption {
+            background-color: #fff; /* White background for the box */
+            border: 1px solid #ddd; /* Light grey border */
+            padding: 4px;           /* Padding around image and caption */
+            margin-bottom: 1.5em;   /* Space below the caption box */
+            box-sizing: border-box; /* Ensures padding/border are within the width */
+            display: block;         /* Ensure it's block for auto margins */
+            margin-left: auto;      /* Center the caption box */
+            margin-right: auto;     /* Center the caption box */
+        }
+        .wp-caption img {
+            display: block;         /* Remove extra space under image and allow centering */
+            max-width: 100%;        /* Responsive image */
+            height: auto;           /* Maintain aspect ratio */
+            margin-left: auto;      /* Center image if narrower than caption box content area */
+            margin-right: auto;
+        }
+        .wp-caption p.wp-caption-text { /* Style for the caption paragraph */
+            font-size: 0.9em;
+            line-height: 1.4;
+            margin: 5px 0 0;        /* Space above caption text */
+            color: #333;            /* Dark grey text color */
+            text-align: center;     /* Center the text itself */
+        }
+    </style>
+</head>
+<body>
+    <!-- Banner.-->
+    <div id="header">
+        <div style="float: left;">
+            <h1 class="sitename"><a href="../blog.html">Complex Surfaces</a></h1>
+        </div>
+        <div id="nav">
+            2016/07/18
+        </div>
+    </div>
+    <!-- End of Banner.-->
+    <div class="container">
+        <div class="row">
+            <div class="entry">
+                <h1>Complex Surfaces</h1>
+                <p class="metadata">Published on: 2016/07/18</p>
+
+					<p>I wrote a separate version of <a href="http://formulatoy.net/ComplexApp.aspx?formula=g%3Dpow(f,2)&amp;opacity=0.77&amp;PNGUKey=2543&amp;XMapping=gR&amp;YMapping=gI&amp;ZMapping=fR&amp;GradientMapping=fI&amp;UMin=-1&amp;UMax=1&amp;VMin=-1&amp;VMax=1&amp;1468468322">formula toy</a> that handles complex functions. So, you can type in a function like: f=sqrt(g). Both f and g are expected to be complex functions:</p>
+<pre>    g = u + <em>i</em>v</pre>
+<p>and</p>
+<pre>    f = w + <em>i</em>x</pre>
+<p>where u is the real component of g, v is the imaginary component of g, etc.</p>
+<p>To draw this surface we need 4 axes, so formula toy uses a color gradient for the 4th axis. We name these as follows:<br />
+&#8211; fR &#8211; the real component of f.<br />
+&#8211; fI &#8211; the imaginary component of f.<br />
+&#8211; gR &#8211; the real component of g.<br />
+&#8211; gI &#8211; the imaginary component of g.</p>
+<p>And you can choose which complex axis maps to which cartesian axis.</p>
+<div id="attachment_1167" style="width: 574px" class="wp-caption alignnone"><a href="http://formulatoy.net/ComplexApp.aspx?formula=g%3Dpow(f,2)&amp;opacity=0.77&amp;PNGUKey=2543&amp;XMapping=gR&amp;YMapping=gI&amp;ZMapping=fR&amp;GradientMapping=fI&amp;UMin=-1&amp;UMax=1&amp;VMin=-1&amp;VMax=1&amp;1468468322"><img fetchpriority="high" decoding="async" aria-describedby="caption-attachment-1167" class="wp-image-1167 size-full" src="13-ComplexSurfaces_files/29.jpg" alt="29" width="564" height="299" srcset="13-ComplexSurfaces_files/29.jpg 564w, 13-ComplexSurfaces_files/29-300x159.jpg 300w" sizes="(max-width: 564px) 100vw, 564px" /></a><p id="caption-attachment-1167" class="wp-caption-text">f=sqrt(g)</p></div>
+<p>This flexible way of doing the mappings allows for simple multi-valued functions/Riemann surfaces:</p>
+<div id="attachment_1168" style="width: 574px" class="wp-caption alignnone"><a href="http://formulatoy.net/ComplexApp.aspx?formula=g%3Dexp(f)&amp;opacity=0.77&amp;PNGUKey=7646&amp;XMapping=gR&amp;YMapping=gI&amp;ZMapping=fI&amp;GradientMapping=fR&amp;UMin=-6&amp;UMax=1&amp;VMin=-6.28&amp;VMax=6.28&amp;1468468824"><img decoding="async" aria-describedby="caption-attachment-1168" class="wp-image-1168 size-full" src="13-ComplexSurfaces_files/30.jpg" alt="30" width="564" height="299" srcset="13-ComplexSurfaces_files/30.jpg 564w, 13-ComplexSurfaces_files/30-300x159.jpg 300w" sizes="(max-width: 564px) 100vw, 564px" /></a><p id="caption-attachment-1168" class="wp-caption-text">f=log(g)</p></div>
+<div id="attachment_1169" style="width: 574px" class="wp-caption alignnone"><a href="http://formulatoy.net/ComplexApp.aspx?formula=g%3Dsin(f)&amp;opacity=1&amp;PNGUKey=4930&amp;XMapping=gR&amp;YMapping=gI&amp;ZMapping=fR&amp;GradientMapping=fI&amp;UMin=-3.14&amp;UMax=3.14&amp;VMin=-3&amp;VMax=3&amp;1468470720"><img decoding="async" aria-describedby="caption-attachment-1169" class="wp-image-1169 size-full" src="13-ComplexSurfaces_files/32.jpg" alt="32" width="564" height="299" srcset="13-ComplexSurfaces_files/32.jpg 564w, 13-ComplexSurfaces_files/32-300x159.jpg 300w" sizes="(max-width: 564px) 100vw, 564px" /></a><p id="caption-attachment-1169" class="wp-caption-text">f=atan(g)</p></div>
+<div id="attachment_1174" style="width: 574px" class="wp-caption alignnone"><a href="http://formulatoy.net/ComplexApp.aspx?formula=g%3Dmultiply(f,exp(f))&amp;opacity=1&amp;PNGUKey=6363&amp;XMapping=gR&amp;YMapping=gI&amp;ZMapping=fI&amp;GradientMapping=fR&amp;UMin=-6&amp;UMax=1&amp;VMin=-5&amp;VMax=5&amp;1468470297"><img loading="lazy" decoding="async" aria-describedby="caption-attachment-1174" class="wp-image-1174 size-full" src="13-ComplexSurfaces_files/31.jpg" alt="31" width="564" height="299" srcset="13-ComplexSurfaces_files/31.jpg 564w, 13-ComplexSurfaces_files/31-300x159.jpg 300w" sizes="auto, (max-width: 564px) 100vw, 564px" /></a><p id="caption-attachment-1174" class="wp-caption-text">Lambert W function</p></div>
+<p>Click on the images to open the surface in formula toy. More details <a href="http://formulatoy.net/ComplexHelp.html">here</a>.</p>
+<p>&nbsp;</p>
+                <p>
+                    <a href="12-TorusKnots.html"><img src="13-ComplexSurfaces_files/previouspost.png" alt="Previous Post"> Torus Knots</a>
+                    <span style="float:right;">
+                        <a href="14-ThoughtBubbles.html">Thought Bubbles <img src="13-ComplexSurfaces_files/nextpost.png" alt="Next Post"></a>
+                    </span>
+                </p>
+                <p><a href="../blog.html">Back to Home</a></p>
+                <hr>
+    <div id="footer">
+        <div style="float: right; margin-right: 1em; ">
+            <span style="display:block;height:30px;">Copyright (c) <nobr><a href="http://rwoodley.org/" style="color:#aaa;" target="_blank">Robert Woodley</a> 2014-2025</nobr></span>
+        </div>
+    </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

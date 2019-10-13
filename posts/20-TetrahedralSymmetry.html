@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tetrahedral symmetry</title>
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+</head>
+<body>
+    <div id="header">
+        <div style="float: left;">
+            <h1 class="sitename"><a href="../blog.html">Tetrahedral symmetry</a></h1>
+        </div>
+        <div id="nav">
+            2017/04/25
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="entry">
+                <div class="post-content">
+        <p>I was curious how one would go about rendering a triangle group using Möbius
+transforms. It took a while! I wanted to jot down the underlying theory so I
+wouldn’t forget it later. Perhaps these notes will be of interest to others as well.
+Here goes:</p>
+
+<p>Given a triangle with angles π/l, π/m, π/n, you can tile a plane if 1/l + 1/m + 1/n = 1. For instance if l,m,n = 2, 4, and 4 respectively, then the sum of the angles of the triangle is π/2 + π/4 + π/4 = π, and you can tile a plane with isosceles right triangles which would look
+something like this [1]:</p>
+
+<p><img src="20-TetrahedralSymmetry_files/320px-Tile_V488_bicolor.svg_.png" alt="A (2,4,4) tiling of the plane."></p>
+<p>A (2,4,4) tiling of the plane.</p>
+
+<p>That’s what a tiling of a Euclidean plane looks like. What does a tiling of a
+sphere look like?</p>
+
+<p>The sum of the angles of a spherical triangle is always greater than π. There are only a few values for l,m,n that form a pattern covering the sphere just once without any overlaps or gaps.
+The possible values for (l,m,n) are[2]:</p>
+
+<p>(p p 1), (p 2 2), (3 3 2), (4 3 2), (5 3 2).</p>
+
+<p>The sides of these triangles form great circles or geodesics.</p>
+
+<p>Let’s look in detail at the (3 3 2) tiling. This fundamental region is a
+triangle with angles: π/3, π/3, π/2. This is another isosceles right triangle. The
+total sum of the angles is 7π/6. The area of a single triangle (for sphere radius =
+1) is π/6. Since the total area of the unit sphere is 4π, it will take 24 of our
+triangles to the tile the sphere. If we did so, we’d get a result like this:</p>
+
+<p><img src="20-TetrahedralSymmetry_files/pic15.gif" alt="A (2,3,3) tiling of the plane."></p>
+<p>A (2,3,3) tiling of the plane.</p>
+
+<p>There are 6 points where 4 vertices (each of angle π/2) meet, and 8 points where
+6 vertices (each of angle π/3) meet. The symmetries consist of rotations and
+reflections.</p>
+
+<p>Rotations: there are 3 axes with order 2 rotation and 4 axes with order 3
+rotation (antipodal points share an axis). And we count the identity (no rotation) as
+one of the rotations. So altogether:</p>
+
+<ul>
+<li>1 identity rotation (no rotation)</li>
+<li>4×2 rotations, (not 4×3 since we don’t want to double count the identity),</li>
+<li>3×1 rotations, (not 3×2 since we don’t want to double count the identity),</li>
+</ul>
+
+<p>1 + 4×2 + 3×1 = 12 rotational symmetries altogether.</p>
+
+<p>Reflections: The illustration immediately below shows 3 possible reflection
+planes for our tiling. But this is not all of the possible planes of reflection of
+course. Each plane in the illustration corresponds to one of the great circles
+(aka geodesics) traced out by the sides of the triangles: each such great circle
+is a plane of rotation. There are 6 of these great circles in this tiling. To
+these 6 reflections are added 6 so-called <a href="https://en.wikipedia.org/wiki/Improper_rotation">roto-reflections</a>, in which, using the same 6 planes, a rotation by π is followed by a
+reflection.</p>
+
+<p><img src="20-TetrahedralSymmetry_files/pic15-1.gif" alt="3 of the 12 possible reflection symmetry planes for the (3,2,2) triangle tiling."></p>
+<p>3 of the 12 possible reflection symmetry planes for the (3,2,2) triangle tiling.</p>
+
+<p>The group of 12 rotations and 12 reflections corresponds to the group <a href="https://groupprops.subwiki.org/wiki/Symmetric_group:S4">S4</a>, which is of order 4! = 24.</p>
+
+<p>So what about tetrahedrons? At some point this article has to mention
+tetrahedrons, given the title.</p>
+
+<p>Wikipedia says: “A regular <a href="https://en.wikipedia.org/wiki/Tetrahedron">tetrahedron</a> has 12 rotational (or orientation-preserving) symmetries, and a <a href="https://en.wikipedia.org/wiki/Symmetry_order">symmetry order</a> of 24 including transformations that combine a reflection and a rotation.</p>
+
+<p>The group of all symmetries is isomorphic to the group S4, the <a href="https://en.wikipedia.org/wiki/Symmetric_group">symmetric group</a> of permutations of four objects, since there is exactly one such symmetry for
+each permutation of the vertices of the tetrahedron.”</p>
+
+<p>And indeed the following diagram also from wikipedia [4] shows that the
+rotations and reflections of a tetrahedron correspond exactly to those of the (3,3,2)
+triangle group that we have been working with.</p>
+
+<p><img src="20-TetrahedralSymmetry_files/640px-Symmetries_of_the_tetrahedron.svg_.png" alt="Symmetries of the tetrahedron"></p>
+<p>The proper rotations, (order-3 rotation on a vertex and face, and order-2 on two
+edges) and reflection plane (through two faces and one edge) in the symmetry
+group of the regular tetrahedron. (image from:
+https://en.wikipedia.org/wiki/Tetrahedron)</p>
+
+<p>This tetrahedral group “arises if we inscribe a regular tetrahedron in a sphere
+and mark its vertices together with the projections of the centers of the faces
+and the midpoints of the edges on the the sphere, the center of projection being
+the center of the sphere.”[3] That article goes on to say that the defining
+relations of the group are:</p>
+
+<p>L²=M²=N²=1,  (LM)³=(MN)³=(NL)²=1</p>
+
+<p>where L, M, N are the reflections in the side of the (3,3,2) triangle.</p>
+
+<p>So to summarize, there are 24 symmetries of the (3,3,2) triangle group and these
+consist of 12 rotations and 12 reflections.</p>
+
+<p>Now, rotations are orientation-preserving transformations, whereas reflections
+are orientation-reversing motions. Triangle groups are not examples of Keinian
+groups. Kleinian groups are groups of möbius transformations, which are
+orientation-preserving.[5]</p>
+
+<p>Triangle groups were studied first in the 19th century and the study of Kleinian
+groups and eventually hyperbolic geometry grew out of those foundations. So
+lets pursue this analysis into the world of Kleinian groups.</p>
+
+<p>“Every group of motions, which is generated by reflections has a subgroup of
+index two. This subgroup consists of directly conformal motions, that is of, möbius
+transformations.“[5]</p>
+
+<p>If we throw out the reflections, we are left with a set of 12 rotations. This
+subgroup is isomorphic with <a href="https://groupprops.subwiki.org/wiki/Alternating_group:A4">A4</a>, the alternating group of permutations of four symbols. Wikipedia says: “The set of orientation-preserving symmetries forms a group referred to as the <a href="https://en.wikipedia.org/wiki/Alternating_group">alternating subgroup</a> A4 of S4″.</p>
+
+<p>Generators for A4 satisfy these relations:</p>
+
+<p>u³ = v³ = (uv)² = I</p>
+
+<p>We can generate A4 with two three-cycles [6]:</p>
+
+<p>U = (123), and V=(124).</p>
+
+<p>It is interesting to work out all the permutations of these generators and see
+that there are indeed only 12 of them:</p>
+
+<table>
+<thead>
+<tr>
+<th>Generators</th>
+<th>Result</th>
+<th>Already Seen?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>I</td>
+<td>1234</td>
+<td></td>
+</tr>
+<tr>
+<td>U</td>
+<td>2314</td>
+<td></td>
+</tr>
+<tr>
+<td>V</td>
+<td>2431</td>
+<td></td>
+</tr>
+<tr>
+<td>UU</td>
+<td>3124</td>
+<td></td>
+</tr>
+<tr>
+<td>UV</td>
+<td>4321</td>
+<td></td>
+</tr>
+<tr>
+<td>VU</td>
+<td>3412</td>
+<td></td>
+</tr>
+<tr>
+<td>VV</td>
+<td>4132</td>
+<td></td>
+</tr>
+<tr>
+<td>UUU</td>
+<td>1234</td>
+<td>I</td>
+</tr>
+<tr>
+<td>UUV</td>
+<td>3241</td>
+<td></td>
+</tr>
+<tr>
+<td>UVU</td>
+<td>4132</td>
+<td>VV</td>
+</tr>
+<tr>
+<td>UVV</td>
+<td>1342</td>
+<td></td>
+</tr>
+<tr>
+<td>VUU</td>
+<td>1423</td>
+<td></td>
+</tr>
+<tr>
+<td>VUV</td>
+<td>3124</td>
+<td>UU</td>
+</tr>
+<tr>
+<td>VVU</td>
+<td>4213</td>
+<td></td>
+</tr>
+<tr>
+<td>VVV</td>
+<td>1234</td>
+<td>I</td>
+</tr>
+<tr>
+<td>UVVU</td>
+<td>2143</td>
+<td></td>
+</tr>
+<tr>
+<td>UVVV</td>
+<td></td>
+<td>UI=U</td>
+</tr>
+<tr>
+<td>VUUU</td>
+<td></td>
+<td>VI=V</td>
+</tr>
+<tr>
+<td>VUUV</td>
+<td>2143</td>
+<td>UVVU</td>
+</tr>
+<tr>
+<td>VUVU</td>
+<td>1234</td>
+<td>(VU)^2=I</td>
+</tr>
+<tr>
+<td>VUVV</td>
+<td>3241</td>
+<td>UUV</td>
+</tr>
+<tr>
+<td>VVUU</td>
+<td>4321</td>
+<td>UV</td>
+</tr>
+<tr>
+<td>VVUV</td>
+<td>1423</td>
+<td>VUU</td>
+</tr>
+<tr>
+<td>VVVU</td>
+<td></td>
+<td>IU=U</td>
+</tr>
+<tr>
+<td>VVVV</td>
+<td></td>
+<td>IV=V</td>
+</tr>
+</tbody>
+</table>
+
+<p>So the elements of the A4 group in terms of our generators is: I, U, V, UU, UV,
+VU, VV, UUV, VVU, UVV, VUU, UVVU.</p>
+
+<p>Nomenclature seems inconsistent across writers, but lets call the tetrahedral
+group that is isomorphic with S4, T*(3,3,2). And the tetrahedral group that is
+isomorphic with A4, we’ll call T(3,3,2). As above, the defining relations of
+T(3,3,2) are</p>
+
+<p>u³ = v³ = (uv)² = 1,</p>
+
+<p>where u = LM and v = MN and  L, M, N are the reflections in the side of the (2,3,3) triangle [3].</p>
+
+<p>From [3], we get some sample values for U and V:</p>
+
+<p><img src="20-TetrahedralSymmetry_files/Screen-Shot-2017-04-23-at-11.34.18-PM.png" alt="Sample values for U and V"></p>
+
+<p>Finding an appropriate fundamental domain was not easy, but a triangle with
+vertices at these corners works:[0, -x + xi, x+xi]where x= -0.366025393.</p>
+
+<p>In spherical coordinates (phi, theta) these corners correspond to:</p>
+
+<p>[(0,0), (-PI/4,len), (+PI/4,len)]where len = acos((cos(PI/3.)+cos(PI/3.)*cos(PI/2.))/(sin(PI/3.)*sin(PI/2.))) =
+0.955316618 rad.</p>
+
+<p>Given this fundamental domain and the list of generators above, we can finally
+tile the Riemann Sphere with (2,3,3) tirangles using Möbius transformations! The
+fact that we are using only the orientation preserving symmetries means we get a
+triangle tiling that covers half of the sphere and leaves empty space
+elsewhere:</p>
+
+<p><a href="http://rwoodleymedia.org/Galleries/233Triangles/transform.html?mode=mathArtTriangles"><img src="20-TetrahedralSymmetry_files/transform.png" alt="3,3,2 Triangle tiling on the Riemann Sphere"></a></p>
+<p>3,3,2 Triangle tiling on the Riemann Sphere, as well as an equirectangular
+projection of same. Rotated using Möbius transformations. You can explore it further <a href="http://rwoodleymedia.org/Galleries/233Triangles/transform.html?mode=mathArtTriangles">here</a>.</p>
+
+<p>So to summarize, the triangle tiling was formed by repeatedly applying the 2
+Möbius transformations to the given fundamental domain in the 12 combinations
+indicated by A4 symmetry. Implementation note: we are rotating this sphere not by
+rotating the camera or the mesh, but again by applying Möbius transformations to
+the texture as discussed in <a href="https://rwoodley.org/?p=1322">this article</a>, which is why the equirectangular projection to the right in the picture above
+is morphing in that weird way.</p>
+
+<h3>Addendum 1: The A4 Group</h3>
+
+<p>The A4 group is of order 12. It has the following non-trivial subgroups:</p>
+
+<ol>
+<li>Three groups of order 2, isomorphic to Z2.</li>
+<li>Four groups of order 3, isomorphic to Z3.</li>
+<li>One group of order 4, isomorphic to the Klein 4 group: V4. Also isomorphic to
+the dihedral group D2.</li>
+</ol>
+
+<p>Lets linger on the V4 group for a second.  If you stretch a tetrahedron like
+this:</p>
+
+<p><img src="20-TetrahedralSymmetry_files/stretched.gif" alt="Stretched tetrahedron"></p>
+
+<p>It no longer displays A4 symmetry. You’ll never find an axis that you can rotate
+by an angle of 2π/3 and have it look the same. But it still displays V4 symmetry, the symmetry of
+a baseball for instance [9]:</p>
+
+<p><img src="20-TetrahedralSymmetry_files/Baseball_crop.png" alt="Baseball symmetry"></p>
+
+<h4>Conjugacy Classes of A4</h4>
+
+<p>There are 4 conjugacy classes of A4:1. One class containing the identity.2. One class containing the three 180 degree rotations through opposite edges.3. One class for the four forward rotations of π/3 around each corner.4. One class for the four reverse rotations of  π/3 around each corner.Note that classes 3 and 4 are merged in S4 but disjoint in A4 because A4 does
+not have a reflection.[8]</p>
+
+<p>If the identity is { 1, 2, 3, 4},Class 2 consists of these permutations:{ (2 1 4 3), (3 4 1 2), (4 3 2 1) }Class 3 consists of these permutations:{ (2 3 1 4), (1 4 2 3), (3 2 4 1), (4 1 3 2) }Class 4 consists of these permutations:{ (3 1 2 4), (1 3 4 2), (4 2 1 3), (2 4 3 1) }To visualize this, label the vertices of the tetrahedron 1,2,3 and 4 in any
+order. Then the numbers listed in the conjugacy class are the permutations of the
+vertices for that class.</p>
+
+<p>You could also label the permutations using our generators:The identity is I,Class 2 consists of these permutations:</p>
+
+<p>{ UVVU, VU, UV }</p>
+
+<p>Class 3 consists of these permutations:</p>
+
+<p>{ U, VUU, UUV, VV}</p>
+
+<p>Class 4 consists of these permutations:</p>
+
+<p>{ UU, UVV, VVU, V }</p>
+
+<p>Note, the transformation of U is a rotation around vertex 4 and the V transformation is a rotation around vertex 3.</p>
+
+<h4>Normal Subgroups:</h4>
+
+<p>A normal subgroup must be a combination of conjugacy classes. These are our
+conjugacy classes (from above):</p>
+
+<p>e – the identity element</p>
+
+<p>x, y, z – 180 degree flips</p>
+
+<p>a, b, c, d – 120-degree clockwise rotations</p>
+
+<p>a², b², c², d² – 120-degree counterclockwise rotations.</p>
+
+<p>The number of elements in each class are 1, 3, 4, and 4 respectively. By
+LaGrange’s theorem the order of a subgroup must divide the order of the group. The only
+non-trivial combination of classes that meets that constraint is {e, x, y, z}
+which is V4.   But that on its own is not enough to determine normalcy. However
+this observation from Armstrong [10] helps: “If H is a subgroup of G, then each
+conjugate gHg     -¹ is also a subgroup of G and has and has the same order as H. Therefore, if G has
+no other subgroup of the same order as H, then H must be a normal subgroup of G.” So V4 is a normal subgroup of A4.</p>
+
+<p>Since it is normal, we can take a quotient, i.e.:</p>
+
+<p>C3 = A4/V4</p>
+
+<p>A4 = V4⋊C3</p>
+
+<p>This is a semi-direct product because C3 is not normal in A4. Details:</p>
+
+<p>V4 is normal in A4. C3 is not normal in A4. Since |V4| and |C3| are relatively
+prime, we have V4 ∩ C3 = {e}. Lets refer to A4, V4 and C3 as G, N and H
+respectively. Every element in G is uniquely expressible in the form nh. The uniqueness follows from N ∩ H = {e}.  Since N is normal in G, for each h ∈ H
+we have an automorphism of N given by n ↦ hnh     -¹ .  In other words, the automorphism is the inner automorphism of h restricted to N.</p>
+
+<p>I’m not sure why it is so important to mention the automorphism. The semi-direct
+product is a product of a normal group and a non-normal group – that seems to
+be the main point. Update: I got a deeper understanding of the role automorphism groups in semi-direct
+products and wrote about it <a href="https://rwoodley.org/?p=1474">here</a>.</p>
+
+<p>For the Klein 4 group V4 we have the relations a² = b²=1 and ab=ba. For C3 we have c³=1. Due to the inner automorphism, we can also state that cac     -¹ = ab and cbc     -¹ = a, for the appropriate choice of a and b.[11]</p>
+
+<p>I am assured in many places that that last presentation represents a group that
+is isomorphic to A4 though I don’t really see it. But we already know we’re
+working with A4.</p>
+
+<h3>Addendum 2:</h3>
+
+<p>In the first chapter of the book Finite Möbius Groups, Minimal Immersions of Spheres, and Moduli, Gabor Toth works out a set of Möbius transforms corresponding to all 3
+polyhedral symmetry groups. These are different from the ones I used above. Here I apply
+his tetrahedral rotations to a so-called 360 photo (taken on a Ricoh Theta):</p>
+
+<p><img src="20-TetrahedralSymmetry_files/TetrahedralSymmetries.gif" alt="Tetrahedral Symmetries"></p>
+
+<p>And just for kicks, here is the same process applied to another photo using his
+octahedral symmetries:</p>
+
+<p><img src="20-TetrahedralSymmetry_files/OctahedralSymmetries.gif" alt="Octahedral Symmetries"></p>
+              
+<p>Octahedral symmetries are double those of the tetrahedron which makes intuitive
+sense when you consider that you can fit 2 tetrahedrons in a cube, e.g. [7]:</p>
+
+<p><img src="20-TetrahedralSymmetry_files/265px-CubeAndStel.svg_.png" alt="Cube and Stel"></p>
+
+<p>[1]
+<a href="https://commons.wikimedia.org/wiki/File:Tile_V488_bicolor.svg#/media/File:Tile_V488_bicolor.svg">https://commons.wikimedia.org/wiki/File:Tile_V488_bicolor.svg#/media/File:Tile_V488_bicolor.svg</a></p>
+
+<p>[2] Coxeter, H. S. M. (1974) Regular Complex Polytopes, Cambridge Unitvesity Press, London. Page 19.</p>
+
+<p>[3] Noneuclidean Tesselations and Their Groups. Academic Press, Oct 18, 1974. Page 73 on.</p>
+
+<p>[4] By I, Cronholm144, CC BY-SA 3.0,
+<a href="https://commons.wikimedia.org/w/index.php?curid=2295116">https://commons.wikimedia.org/w/index.php?curid=2295116</a></p>
+
+<p>[5] Geometry of Group Representations: Proceedings of the AMS-IMS-SIAM Joint Summer Research Conference Held July
+5-11, 1987 with Support from the National Science Foundation. William Mark Goldman,
+Andy R. Magid. American Mathematical Soc., 1988 – Mathematics. Page 4.</p>
+
+<p>[6] <a href="http://www.math.uconn.edu/~kconrad/blurbs/grouptheory/genset.pdf">http://www.math.uconn.edu/~kconrad/blurbs/grouptheory/genset.pdf</a></p>
+
+<p>[7] By Steelpillow (Own work) [CC BY-SA 3.0
+(<a href="http://creativecommons.org/licenses/by-sa/3.0">http://creativecommons.org/licenses/by-sa/3.0</a>)], via Wikimedia Commons</p>
+
+<p>[8] <a href="http://www.math.uconn.edu/~kconrad/blurbs/grouptheory/conjclass.pdf">http://www.math.uconn.edu/~kconrad/blurbs/grouptheory/conjclass.pdf</a></p>
+
+<p>[9] By Tage Olsin – Cropped from Image:Baseball.jpg by Tage Olsin, CC BY-SA 2.0,
+<a href="https://commons.wikimedia.org/w/index.php?curid=2345172">https://commons.wikimedia.org/w/index.php?curid=2345172</a></p>
+
+<p>[10] M.A. Armstrong, Groups And Symmetry. Page 114.</p>
+
+<p>[11] <a href="http://sierra.nmsu.edu/morandi/notes/semidirect.pdf">http://sierra.nmsu.edu/morandi/notes/semidirect.pdf</a>, page 3.</p>
+    </main>
+                <p>
+                    <a href="19-CongruenceGroups.html"><img src="../media/previouspost.png" > Congruence Groups</a>
+                    <span style="float:right;">
+                        <a href="21-IntuitionsForSU2SO3.html">Intuitions for SU(2) and SO(3) <img src="../media/nextpost.png" alt="Next Post"></a>
+                    </span>
+                </p>
+                <p><a href="../blog.html">Back to Home</a></p>
+                <div id="footer">
+                    <div style="float: right; margin-right: 1em; ">
+                        <span style="display:block;height:30px;">Copyright (c) <nobr><a href="http://rwoodley.org/" style="color:#aaa;" target="_blank">Robert Woodley</a> 2014-2025</nobr></span>
+                    </div>
+                </div>
+    </div>
+    </div>
+    </div>
+</body>
+</html>

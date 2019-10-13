@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dolly Zoom using Möbius Transforms</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <div id="header">
+        <div style="float: left;">
+            <h1 class="sitename"><a href="../blog.html">Dolly Zoom using Möbius Transforms</a></h1>
+        </div>
+        <div id="nav">
+            2018/05/03
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="entry">
+                <div class="post-content">
+                    <main>
+                        <p>Dolly zoom is the technique of zooming/panning a camera while a dolly moves the
+subject towards or away from the camera. The combined effect is that the subject
+doesn't change size but the background moves in a weird way that distorts
+perspective. This effect was pioneered in the movie Vertigo but has been used
+countless times since. I first noticed it in Spike Lee's "Do the Right Thing".</p>
+
+                        <p>Some time ago, Henry Segerman posted a video showing how to generate a similar
+effect with 360 video.</p>
+<iframe src="https://www.youtube.com/embed/2gXIfNR5YPc" width="560" height="315" frameborder="0" allowfullscreen="allowfullscreen"></iframe></p>
+
+                        <p>He achieved this effect using Möbius transforms. There is a unique Möbius
+transformation mapping any 3 points to any other 3 points. So you can use such a
+transform to keep the same 3 points fixed no matter what!</p>
+
+                        <p>That was something I wanted to experiment with. Here is what I came up with
+first:</p>
+<iframe src="https://player.vimeo.com/video/267941147" width="640" height="480" frameborder="0" allowfullscreen="allowfullscreen"></iframe></p>
+
+
+                        <p>On the left is an equirectangular projection of a 360 still I took on my
+rooftop. I superimposed the 3 Nyan cats wandering around the image. On the right is the
+same video, BUT I keep the cats' locations fixed using a Möbius transform and
+the world has to adjust around them.</p>
+
+                        <p>So on the left the world stays fixed and the cats move. On the right the cats
+stay fixed and the world moves. If you don't believe that the cats stay still just
+put your finger on one and you'll see that while it might shrink or grow or
+flip, it always stays under your finger.</p>
+
+                        <p>The change in perspectives in the above Nyan Cat video are weird and dramatic
+indeed. But since the cats are all in a line the equator doesn't move. In this
+next video the cats move at different latitudes for more dramatic '<a href="https://www.wsj.com/articles/how-to-make-tiny-planet-photos-instagrams-latest-craze-1440102114">tiny world</a>' effects:</p>
+<p>&nbsp;</p>
+<p><iframe src="https://player.vimeo.com/video/267941136" width="640" height="367" frameborder="0" allowfullscreen="allowfullscreen"></iframe></p>
+<p>&nbsp;</p>
+
+                        <p>Remember that Möbius transforms are possible with spherical (360) images because
+we identify the image sphere with the Riemann sphere, as I covered in an
+<a href="15-MobiusTransforms.html">earlier note</a>. Thus when I speak of an equator or latitude I am referring to the sphere of
+the image from the camera of course.</p>
+
+                        <p>Aside: I find it quite natural to read equirectangular images now. The fact is,
+it is inconvenient to always be scrolling left, right up and down in order to
+view a real 360 image. An equirectangular projection has all the same information
+but requires less work. I wonder if this will become a common way for people to
+understand images. There is nothing special about the perspective and projection
+we've been using since the Renaissance.</p>
+
+                        <p>Finally, let's try the same effect on a video with people instead of Nyan Cats:</p>
+
+<p>&nbsp;<br />
+<iframe loading="lazy" src="https://player.vimeo.com/video/268228058" width="640" height="514" frameborder="0" allowfullscreen></iframe></p>
+
+                        <p>One effect I love: when 2 people meet, the algo has to flip the whole picture
+upside down to preserve spacing.</p>
+                    </main>
+                </div>
+                <p>
+                    <a href="23-3SphereNotes.html"><img src="../media/previouspost.png">3-Sphere notes</a>
+                    <span style="float:right;">
+                        <a href="25-MercatorProjection.html">The Mercator Projection <img src="../media/nextpost.png" alt="Next Post"></a>
+                    </span>
+                </p>
+                <p><a href="../blog.html">Back to Home</a></p>
+                <div id="footer">
+                    <div style="float: right; margin-right: 1em; ">
+                        <span style="display:block;height:30px;">Copyright (c) <nobr><a href="http://rwoodley.org/" style="color:#aaa;" target="_blank">Robert Woodley</a> 2014-2025</nobr></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

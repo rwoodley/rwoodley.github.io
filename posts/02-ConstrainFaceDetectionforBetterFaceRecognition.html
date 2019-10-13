@@ -1,0 +1,77 @@
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>About</title>
+
+	<script>
+		(function (i, s, o, g, r, a, m) {
+			i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+				(i[r].q = i[r].q || []).push(arguments)
+			}, i[r].l = 1 * new Date(); a = s.createElement(o),
+				m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+		})(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+		ga('create', 'UA-41066114-3', 'auto');
+		ga('send', 'pageview');
+
+	</script>
+	<style>
+		li {
+			padding-bottom: .5em; 
+		}
+	</style>
+	<link rel="stylesheet" type="text/css" href="../css/styles.css">
+
+</head>
+
+<body>
+	<!-- Banner.-->
+	<div id="header">
+            <div style="float: left;">
+					<h1 class="sitename"><a href="../blog.html">Constrain Face Detection for Better Face Recognition</a></h1>
+				</div>
+
+				<div id="nav">
+						2013/05/07
+				</div>
+
+	</div>
+	<!-- End of Banner.-->
+
+
+	<div class="container">
+		<div class="row">
+
+			<div class="entry">
+
+
+<p>Getting good results with PCA-based facial recognition algorithms depends on correcting for differences in lighting and alignment between the faces. Widely used techniques for correcting for lighting include using histogram equalization or discarding the first eigen vector. Techniques for correcting for alignment differences often involve locating facial features such as the eyes and then rotating the face.</p>
+<p>I found these techniques problematic. The corrections for lighting can indeed reduce the impact of overall illumination effects but don’t work for side-lighting scenarios. Face alignment methods are complicated and error prone. In the case of eye alignment one would presumably use additional haar cascades to locate the right eye and the left eye which in turn are error-prone and repeat many of correction problems we have with faces.</p>
+<p>It seems that face recognition problems stem from an overly permissive face detection algorithm. The haar cascade that comes with Open CV (called ‘frontalface_alt2’) is indeed very good at detection faces, including rotated faces. It seems it was trained with a sample set that included rotated faces and faces in all different illumination conditions.</p>
+<p>Thus constraining face detection so that it only detects horizontal well lit faces would make face recognition much more accurate. That was my hypothesis at any rate and I decided to give it a try.</p>
+<p>To this end I used the Open CV tools to build a training set that included only horizontal, full frontal and well lit faces. In the negative sample set I included faces rotated along the Z axis. A better negative set would have included faces rotated along the X and Y axes as well, but I didn’t do that. (By Z axis I mean an axis running vertically through the face).</p>
+<p>The resultant cascade is available on <a href="https://github.com/rwoodley/iOS-projects/blob/master/FaceDetectionAlgoCompare/OpenCVTest/haarcascade_constrainedFrontalFace.xml">https://github.com/rwoodley/iOS-projects/blob/master/FaceDetectionAlgoCompare/OpenCVTest/haarcascade_constrainedFrontalFace.xml</a>. There is a sample iOS application there as well that allows you to compare this cascade with frontalface_alt2 as well as one other cascade.</p>
+<p>I was quite pleased with the results. The detection only works on well lit, well aligned faces. This puts the onus on the user to submit a good face. I realize this scenario won’t work with everyone’s system requirements, but in my case it was quite useful.</p>
+<p>See the sample output below from my test iPhone application. I aim the camera at a photo of Joe Biden. Above his face are 3 smaller faces in grey-scale. These represent the faces detected by an LBP cascade, the Open CV alt2 cascade and my constrained cascade respectively.</p>
+<p style="text-align: center;"><img class="aligncenter" alt="" src="./02-ConstrainFaceDetectionforBetterFaceRecognition_files/IMG_6053.jpg" width="187" height="332"></p>
+<p>Now see the sample below where Joe Biden’s photo is tilted. The first 2 cascades still find his face, but the 3rd one (the constrained one) does not.</p>
+<p style="text-align: center;"><img class="aligncenter" alt="" src="./02-ConstrainFaceDetectionforBetterFaceRecognition_files/IMG_6054.jpg" width="192" height="341"></p>
+</div>
+                <p>
+                    <a href="01-FaceRecognitionSystemDesignConsiderations.html"><img src="../media/previouspost.png">Face Recognition System Design Considerations</a>
+                    <span style="float:right;">
+                        <a href="03-FactorDominoes.html">Factor Dominoes <img src="../media/nextpost.png" alt="Next Post"></a>
+                    </span>
+                </p>
+                <p><a href="../blog.html">Back to Home</a></p>
+                <div id="footer">
+                    <div style="float: right; margin-right: 1em; ">
+                        <span style="display:block;height:30px;">Copyright (c) <nobr><a href="http://rwoodley.org/" style="color:#aaa;" target="_blank">Robert Woodley</a> 2014-2025</nobr></span>
+                    </div>
+                </div>
+</div>
+</div>
+</body>
+
+</html>

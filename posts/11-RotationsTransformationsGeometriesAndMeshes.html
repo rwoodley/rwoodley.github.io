@@ -1,0 +1,96 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Rotations, Transformations – Geometries and Meshes</title>
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-41066114-3', 'auto');
+        ga('send', 'pageview');
+    </script>
+    <style>
+        li { padding-bottom: .5em; }
+        pre { white-space: pre-wrap; word-wrap: break-word; background-color: #000000; color: #00FF00; border: 1px solid #ccc; padding: 10px; margin: 10px 0; display: block; font-family: monospace; }
+    </style>
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+</head>
+<body>
+    <!-- Banner.-->
+    <div id="header">
+        <div style="float: left;">
+            <h1 class="sitename"><a href="../blog.html">Rotations, Transformations – Geometries and Meshes</a></h1>
+        </div>
+        <div id="nav">
+            2015/01/17
+        </div>
+    </div>
+    <!-- End of Banner.-->
+    <div class="container">
+        <div class="row">
+            <div class="entry">
+                <p>I was driving myself batty trying to get all my rotations and transformations to behave correctly in three.js. So in these kind of cases one must always pare down to essentials. As follows:</p>
+                <p>Lets create a simple mesh and place it on the scene:</p>
+                <pre>// Example 1<br>var geo = new THREE.BoxGeometry(5,5,20,32);<br>_mesh = new THREE.Mesh(geo, new THREE.MeshNormalMaterial());</pre>
+                <p>Then in the render loop, we rotate it around the Z axis (the blue axis):</p>
+                <pre>_mesh.rotation.z = -_tick * Math.PI/256;</pre>
+                <p>The result:<br/><img alt="snap" src="./11-RotationsTransformationsGeometriesAndMeshes_files/pic1.gif"></p>
+                <p>This just a screen grab, an animated gif. Hence the jerk when the animation restarts.</p>
+                <p>Now what happens if we rotate the mesh in the initial setup:</p>
+                <pre>// Example 2<br>var geo = new THREE.BoxGeometry(5,5,20,32);<br>_mesh = new THREE.Mesh(geo, new THREE.MeshNormalMaterial());<br>_mesh.rotateY(Math.PI/2);</pre>
+                <p>Code in the render loop is the same as before:</p>
+                <pre>_mesh.rotation.z = -_tick * Math.PI/256;</pre>
+                <p>Now the block rotates along the X (red) axis, even though we told it to rotate it along the Z axis.<img alt="snap" src="./11-RotationsTransformationsGeometriesAndMeshes_files/pic2.gif"></p>
+                <p>If we specify rotation order in the initial setup, then it will rotate around the Z axis:</p>
+                <pre>// Example 3<br>_mesh.rotation.order = 'ZXY';</pre>
+                <p>The result:<br/><img alt="snap" src="./11-RotationsTransformationsGeometriesAndMeshes_files/pic3.gif"></p>
+                <p>Now lets try some translation. Initial setup:</p>
+                <pre>// Example 4<br>var geo = new THREE.BoxGeometry(5,5,20,32);<br>_mesh = new THREE.Mesh(geo, new THREE.MeshNormalMaterial());<br>_mesh.rotation.order = 'ZXY';<br>_mesh.rotateY(Math.PI/2);<br>_mesh.position.set(0,-6,0);<br>_scene.add( _mesh);</pre>
+                <p>Render loop is the same, rotate around Z axis. The result is that the translation is applied and the object rotates around the its new local axis which was also shifted downwards:<img alt="snap" src="./11-RotationsTransformationsGeometriesAndMeshes_files/pic6.gif"></p>
+                <p>Three.js also supports the <a href="http://en.wikipedia.org/wiki/Axis%E2%80%93angle_representation">axis/angle method</a> of specifying rotations:</p>
+                <pre>// Example 5<br>var geo = new THREE.BoxGeometry(5,5,20,32);<br>_mesh = new THREE.Mesh(geo, new THREE.MeshNormalMaterial());<br>// these have no effect because in render() we will directly modify the internal rotation matrix<br>//_mesh.rotateY(Math.PI/4);<br>//_mesh.rotation.order = 'ZXY';</pre>
+                <p>Render loop:</p>
+                <pre>var axis = new THREE.Vector3( 0, 0, 1 );<br>var angle = _tick * Math.PI / 256;<br>// matrix is a THREE.Matrix4()<br>_matrix.makeRotationAxis( axis.normalize(), angle ); <br>_mesh.rotation.setFromRotationMatrix( _matrix );</pre>
+                <p>The result is identical to what we achieved above in Example 1 with mesh.rotation. But often it is easier to conceptualize an axis of rotation rather than a succession of <a href="http://en.wikipedia.org/wiki/Euler_angles">Euler angles</a>.<img alt="snap" src="./11-RotationsTransformationsGeometriesAndMeshes_files/pic4.gif"></p>
+                <p>We can mimic the Example 3 result using makeRotationY and applying it to the geometry.</p>
+                <pre>// Example 6<br>var geo = new THREE.BoxGeometry(5,5,20,32);<br>geo.applyMatrix( new THREE.Matrix4().makeRotationY( Math.PI/2 ) );<br>_mesh = new THREE.Mesh(geo, new THREE.MeshNormalMaterial());<br>_scene.add( _mesh);</pre>
+                <p>Render loop is same as Example 5, with the desired result.<img alt="snap" src="./11-RotationsTransformationsGeometriesAndMeshes_files/pic5.gif"></p>
+                <p>Now why did that work whereas mesh.rotationY is ignored? Because we rotated the geometry; the vertices were changed. This will be clearer if we translate the geometry:</p>
+                <pre>// Example 7<br>var geo = new THREE.BoxGeometry(5,5,20,32);<br>geo.applyMatrix( new THREE.Matrix4().makeRotationY( Math.PI/2 ) );<br>geo.applyMatrix( new THREE.Matrix4().makeTranslation(0,-6,0) );<br>_mesh = new THREE.Mesh(geo, new THREE.MeshNormalMaterial());<br>_scene.add( _mesh);<br><br>// put sphere at mesh origin<br>var sphere = new THREE.Mesh(<br>    new THREE.SphereGeometry(1,20,20),<br>    new THREE.MeshNormalMaterial());<br>sphere.position.set(0, 0, 0,);  // we could put the sphere anywhere<br>                       // and the box would rotate around it</pre>
+                <p>Render loop code is the same as the previous 2 examples:</p>
+                <pre>var axis = new THREE.Vector3( 0, 0, 1 );<br>var angle = -_tick * Math.PI / 256;<br>// matrix is a THREE.Matrix4()<br>_matrix.makeRotationAxis( axis.normalize(), angle ); <br>_mesh.rotation.setFromRotationMatrix( _matrix );</pre>
+                <p>The result:<br/><img alt="snap" src="./11-RotationsTransformationsGeometriesAndMeshes_files/pic7.gif"></p>
+                <p>The sphere represents the center of our geometry, its origin. The vertices have been rotated and translated from the local origin, where the sphere is.</p>
+                <p>If we’re rotating geometries, it is helpful to create a set of axes to show the local rotation axes of the geometry.</p>
+                <pre>// Example 8:<br>// put axes at mesh origin with mesh rotation<br>// drawAxes is my routine which is based on THREE.AxisUtils(). See animation link below.<br>_scene.add(drawAxes(10, _mesh.position, _mesh.rotation));</pre>
+                <p>Since we’re just rotating the mesh around the Z (blue) axis, we can use this more compact syntax in the render loop:</p>
+                <pre>_mesh.rotation.z = -_tick * Math.PI/128;</pre>
+                <p>The result:<br/><img alt="snap" src="./11-RotationsTransformationsGeometriesAndMeshes_files/pic8.gif"></p>
+                <p>So to review: we wanted a geometry to rotate around a point that was external to the geometry. We did that by transforming the vertices of the geometry using applyMatrix.</p>
+                <p>There is another way to accomplish the same result: attach the box mesh to a parent mesh. Set the child’s position (that is to say, the box’s position) to be relative to the parent. And then place the parent where one wants, and rotate the parent if appropriate:</p>
+                <pre>// Example 9:<br>var geo = new THREE.BoxGeometry(5,5,20,32);<br>_mesh = new THREE.Mesh(geo, new THREE.MeshNormalMaterial());<br>_mesh.rotation.y = -Math.PI/2;<br>_mesh.position.set(0,-6,0);    // _mesh will be the child<br><br>_sphere = new THREE.Mesh(     // _sphere will be the parent<br>    new THREE.SphereGeometry(1,20,20),<br>    new THREE.MeshNormalMaterial());<br>_sphere.position.set(0,-12,0);<br>_sphere.rotation.x -= Math.PI/8;<br>_sphere.add(_mesh);      // add child to parent<br>_scene.add(_sphere);<br><br>// put axes at parent origin with parent rotation<br>_scene.add(drawAxes(10, _sphere.position, _sphere.rotation));</pre>
+                <p>And in the render loop, rotate the _sphere, not the _mesh.</p>
+                <p>When is this method (building a parent child relationship) preferable to changing the geometry? I couldn’t see much difference until I had to work with physi.js to apply physics to some of my meshes. Physi.js only works with meshes that have certain simple geometries (sphere, cone, box, etc). It will however work with compound meshes and thus with more complicated geometries, but in this case a parent/child relationship between the meshes is required.</p>
+                <p>Full three.js animation is <a href="./11-RotationsTransformationsGeometriesAndMeshes_files/app/example.html">here</a>.</p>
+                <p>Using r69 of three.js.</p>
+            </div>
+
+                <p>
+                    <a href="10-DrawingPentatopeCrossSectionsInThreeJs.html"><img src="../media/previouspost.png" >Drawing Pentatope Cross-Sections in three.js</a>
+                    <span style="float:right;">
+                        <a href="12-TorusKnots.html">Torus Knots <img src="../media/nextpost.png" alt="Next Post"></a>
+                    </span>
+                </p>
+                <p><a href="../blog.html">Back to Home</a></p>
+                <div id="footer">
+                    <div style="float: right; margin-right: 1em; ">
+                        <span style="display:block;height:30px;">Copyright (c) <nobr><a href="http://rwoodley.org/" style="color:#aaa;" target="_blank">Robert Woodley</a> 2014-2025</nobr></span>
+                    </div>
+                </div>
+        </div>
+    </div>
+</body>
+</html>
