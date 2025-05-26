@@ -7,6 +7,30 @@
     <style>
         li { padding-bottom: .5em; }
         pre { white-space: pre-wrap; word-wrap: break-word; background-color: #000000; color: #00FF00; border: 1px solid #ccc; padding: 10px; margin: 10px 0; display: block; font-family: monospace; }
+        .wp-caption {
+            background-color: #fff; /* White background for the box */
+            border: 1px solid #ddd; /* Light grey border */
+            padding: 4px;           /* Padding around image and caption */
+            margin-bottom: 1.5em;   /* Space below the caption box */
+            box-sizing: border-box; /* Ensures padding/border are within the width */
+            display: block;         /* Ensure it's block for auto margins */
+            margin-left: auto;      /* Center the caption box */
+            margin-right: auto;     /* Center the caption box */
+        }
+        .wp-caption img {
+            display: block;         /* Remove extra space under image and allow centering */
+            max-width: 100%;        /* Responsive image */
+            height: auto;           /* Maintain aspect ratio */
+            margin-left: auto;      /* Center image if narrower than caption box content area */
+            margin-right: auto;
+        }
+        .wp-caption p.wp-caption-text { /* Style for the caption paragraph */
+            font-size: 0.9em;
+            line-height: 1.4;
+            margin: 5px 0 0;        /* Space above caption text */
+            color: #333;            /* Dark grey text color */
+            text-align: center;     /* Center the text itself */
+        }
     </style>
 </head>
 <body>
