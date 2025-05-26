@@ -4,6 +4,10 @@
     <title        <p>But that code uses three.js objects so is beyond what you can do in formula toy.</p>
         <p>A trefoil is just one example of a torus knot. It is a (2,3) torus knot which means it winds 3 times around a circle in the interior of the torus, and 2 times around the torus' axis of rotational symmetry. There is a whole family of torus knots (p,q). p and q correspond to pp and qq in the parametric formula above.</p>orus Knots</title>
     <link rel="stylesheet" type="text/css" href="../css/styles.css">
+    <style>
+        li { padding-bottom: .5em; }
+        pre { white-space: pre-wrap; word-wrap: break-word; background-color: #000000; color: #00FF00; border: 1px solid #ccc; padding: 10px; margin: 10px 0; display: block; font-family: monospace; }
+    </style>
 </head>
 <body>
     <!-- Banner.-->
@@ -17,8 +21,10 @@
     </div>
     <!-- End of Banner.-->
     <div class="container">
-        <h1>Torus Knots</h1>
-        <p class="metadata">Published on: 2016/05/30</p>
+        <div class="row">
+            <div class="entry">
+                <h1>Torus Knots</h1>
+                <p class="metadata">Published on: 2016/05/30</p>
 				<p><a href="07-FormulaToy.html" target="_blank" rel="noopener">Formula Toy</a> is a simple and free WebGL app I wrote that allows you to enter in 3-d formulas and see the resulting surface. Sort of like Desmos, but for 3D.</p>
 <p>When I first wrote it you could express your formulas in 3 different coordinate systems: cartesian, spherical (polar), and cylindrical. I recently add toroidal which is not very useful except for drawing toruses:</p>
 <pre style="color: #00ff00;">     radius=.5+sin(phi)/(15)*3
