@@ -60,12 +60,12 @@ body {
 
 /* General  */
 
-a {
-    color: aaa;
+a, a:visited {
+    color: green;
     text-decoration: none;
 }
 
-a:hover {color: #aaf;}
+a:hover {color: lightgreen;}
 
 /* `Headings
 ----------------------------------------------------------------------------------------------------*/
