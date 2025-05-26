@@ -57,10 +57,13 @@
 <p>This is a linear equation; we&#8217;re not dealing with curved cross-sections for now, though that would be fun. a,b, and c are constants. x,y,z, and w are the 4 axes. K is a constant that we change to get different cross-sections.</p>
 <p>But why do we need 4 dimensions to describe a 3-dimensional space? Because we are locating that 3-d space in 4 dimensions. Just as the equation for a plane in 3-d space requires 3 dimensions (e.g. x+y = z describes a plane in 3-d space).</p>
 <p>What about our equation for pentatope? Well we don&#8217;t have an equation, but we have a collection of points. Our pentatope has 5 corners. Lines connect each point to every other point, resulting in 10 lines. These 10 lines in turn form 10 faces (2-d planes). These 10 faces in turn from 5 3-d tetrahedrons.</p>
-<p>Note that:<br />
+<p>Note that in general:<br />
 &#8211; The intersection of a 4-d line and a 3-d space is a point.<br />
 &#8211; The intersection of a 4-d plane and a 3-d space is a line.<br />
-&#8211; The intersection of a 4-d volume and a 3-d space is a plane.</p>
+&#8211; The intersection of a 4-d volume and a 3-d space is a plane.<br/>
+<i>(I say "in general" because there is the special case where the entity intersecting in fact lies 
+entirely in the subspace. For example a 4-d line could lie entirely in a 3-d space. In that case the intersection is the line itself.)</i></p>
+
 <p>Our cross-section is going to look like a wire-frame, in other words a collection of lines. So we will capture the intersection of the pentatope&#8217;s faces with our cross-sectional space.</p>
 <p>Our pseudo-code would look like this:</p>
 <pre>
