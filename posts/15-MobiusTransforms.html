@@ -63,7 +63,7 @@
                 <p>The Riemann sphere is a representation of the complex plane as a sphere using reverse stereographic projection. Möbius transformations are transformations of the complex plane. Our three.js sphere is a normal sphere in 3-d cartesian space (R3); each point on its surface has an (x,y,z) coordinate where x, y and z are real numbers. We can convert our x,y,z point to a point in the complex plane if we take our sphere to be a Riemann sphere. Or in jargon we can say equivalently: P¹(C) is diffeomorphic to the sphere S². The formulas are <a href="http://math.stackexchange.com/questions/1219406/how-do-i-convert-a-complex-number-to-a-point-on-the-riemann-sphere">here</a> (and elsewhere).</p>
                 <p>So for instance the south pole is (0,0,-1) in cartesian/R3 space and (0,0i) in complex space. The north pole is (0,0,1) in cartesian space/R3 and (∞, ∞i) in complex space. (The Reimann sphere is really the complex plane plus one point which is the point at the north pole, but I digress).</p>
                 <div class="wp-caption alignnone" style="width: 610px">
-                    <img src="../media/post-15-riemannkugel.jpg" alt="Riemann Sphere">
+                    <img src="15-MobiusTransforms_files/post-15-riemannkugel.jpg" alt="Riemann Sphere">
                     <p class="wp-caption-text">The Riemann Sphere <a href="http://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=1357613">https://commons.wikimedia.org/w/index.php?curid=1357613</a></p>
                 </div>
 
@@ -80,18 +80,18 @@
                 <p>The only Möbius transformations I’ve implemented for now are those to do rotation and zoom. By default the fixed points are antipodal though you can explicitly set the fixed points using the Epsilon 1 and Epsilon 2 buttons. The video linked to above gives a good overview of what all the different buttons do.</p>
                 <p>This is a rotation around 2 non-antipodal fixed points:</p>
                 <div class="wp-caption alignnone" style="width: 610px">
-                    <img src="../media/post-15-rotation.png" alt="Rotation Example">
+                    <img src="15-MobiusTransforms_files/post-15-rotation.png" alt="Rotation Example">
                     <p class="wp-caption-text">Rotation around 2 non-antipodal fixed points</p>
                 </div>
                 <p>In addition to Möbius transforms to do rotation and zoom, there are some other complex transformation options.</p>
                 <div class="wp-caption alignnone" style="width: 610px">
-                    <img src="../media/post-15-complex-transform.png" alt="Complex Transformation Example">
+                    <img src="15-MobiusTransforms_files/post-15-complex-transform.png" alt="Complex Transformation Example">
                     <p class="wp-caption-text">Other complex transformation options</p>
                 </div>
                 <p>You may have noticed that we start with the point on the complex plane (a + bi) for which we need a pixel. We then transform (a + bi) into (c + di) to get the pixel we will draw. Thus the transformation is really a reverse transformation.</p>
                 <p>Infinities of volleyball players on North Avenue Beach (Works at 60FPS on video!):</p>
                 <div class="wp-caption alignnone" style="width: 610px">
-                    <img src="../media/post-15-volleyball.png" alt="Volleyball Example">
+                    <img src="15-MobiusTransforms_files/post-15-volleyball.png" alt="Volleyball Example">
                     <p class="wp-caption-text">Infinities of volleyball players</p>
                 </div>
                 <p><a href="http://archive.bridgesmathart.org/2016/bridges2016-15.pdf">This article</a> by Henry Segerman gives a comprehensive overview of the math behind these transformations and includes more examples of other transformations you can do.</p>
