@@ -54,7 +54,7 @@ but however you define them, there are always 3 angles. They are widely used in
 graphics programming to rotate objects.</p>
 
 <p><img src="21-IntuitionsForSU2SO3_files/Euler2a.gif" alt="Euler angles example from Wikipedia page on same."></p>
-<p>Euler angles example from Wikipedia page on same.[1]</p>
+<p id="caption-attachment-1521" class="wp-caption-text">Euler angles example from Wikipedia page on same.[1]</p>
 
 <p>Gimbals are mechanical devices. A single gimbal allows rotation around a single
 axis. A set of 3 orthogonally nested gimbals extends this to 3 separate axes. In
@@ -62,7 +62,7 @@ an inertial system, the 3 gimbal system senses rotation about all axes of 3
 dimensional space. They have been used in ships, airplanes and rockets.</p>
 
 <p><img src="21-IntuitionsForSU2SO3_files/Gimbal_3_axes_rotation.gif" alt="Gimbal with 3 axes of rotation"></p>
-<p>Gimbal with 3 axes of rotation. From Wikipedia.[2]</p>
+<p class="wp-caption-text">Gimbal with 3 axes of rotation. From Wikipedia.[2]</p>
 
 <p>However, they suffer from a flaw called Gimbal Lock whereby in certain
 orientations, when 2 gimbals rotate around the same axis, the system loses one degree of
@@ -85,8 +85,8 @@ Apollo 11 and Apollo 13. The Apollo 11 spacecraft actually had to execute such a
 right after the initial explosion when the spacecraft was pitching about
 wildly.[3]</p>
 
-<p><img src="21-IntuitionsForSU2SO3_files/640px-Apollo_DSKY_interface.svg_.png" alt="Apollo DSKY interface"></p>
-<p>Schematic of the DSKY interface used in Apollo spacecraft. Notice the 'Gimbal
+<p><img src="21-IntuitionsForSU2SO3_files/640px-Apollo_DSKY_interface.svg_.png" alt="Apollo DSKY interface" style="background-color: white; padding: 10px;"></p>
+<p class="wp-caption-text">Schematic of the DSKY interface used in Apollo spacecraft. Notice the 'Gimbal
 Lock' light in the 2nd row, 2nd column.</p>
 
 <p>Back to programming. The usual advice if you want to avoid 180 degree flips in
@@ -99,7 +99,7 @@ dimensions.</p>
 
 <p>There is a mathematical group called SU(2) defined as follows:</p>
 
-<p><img src="21-IntuitionsForSU2SO3_files/SU2_definition.png" alt="SU(2) definition"></p>
+<p><img src="21-IntuitionsForSU2SO3_files/Screen-Shot-2017-09-26-at-10.47.09-PM.png" alt="SU(2) definition"></p>
 
 <p>This group will be very relevant to this discussion because it turns out that
 SU(2) is isomorphic to the 3-sphere, S³, as is demonstrated <a href="https://en.wikipedia.org/wiki/Special_unitary_group#Isomorphism_with_S3">here</a> in wikipedia. This is totally intuitive since SU(2) describes a sphere in C²
@@ -157,7 +157,7 @@ Gimbal lock and exhibits weird rotation behavior like the plate trick or the
 Dirac belt trick:</p>
 
 <p><img src="21-IntuitionsForSU2SO3_files/Belt_Trick.gif" alt="Dirac Belt Trick"></p>
-<p>Dirac Belt Trick [5]</p>
+<p class="wp-caption-text">Dirac Belt Trick [5]</p>
 
 <p>Let us linger on the Dirac belt trick for a second. This is an example of <a href="https://en.wikipedia.org/wiki/Orientation_entanglement">orientation entanglement</a>. If the object you are rotating in 3-d space is embedded in a fixed framework
 like a room, then after one rotation of 360 degrees, the orientation of your

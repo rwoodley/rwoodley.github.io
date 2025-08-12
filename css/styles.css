@@ -159,3 +159,21 @@ pre {margin-left: 20px;}
 	font-weight: 500;
 }
 
+ 
+.wp-caption img {
+    border: 0 none;
+    height: auto;
+    margin:0;
+    max-width: 95%;
+    padding:0;
+    width: auto;
+}
+
+.wp-caption p.wp-caption-text,
+p.wp-caption-text {
+  	color: #ff0;
+    font-size:11px;
+    line-height:17px;
+    margin:0;
+    padding:0 4px 5px;
+}
